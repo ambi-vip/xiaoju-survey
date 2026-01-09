@@ -1,0 +1,73 @@
+{
+  "name": "@ahoo-wang/wow-client",
+  "version": "0.0.1",
+  "description": "WOW Project Client",
+  "keywords": [
+    "wow",
+    "client",
+    "typescript"
+  ],
+  "author": "Ahoo-Wang",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/Ahoo-Wang/wow-project-template",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ahoo-Wang/wow-project-template.git",
+    "directory": "client"
+  },
+  "bugs": {
+    "url": "https://github.com/Ahoo-Wang/wow-project-template/issues"
+  },
+  "type": "module",
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "test": "vitest run --coverage",
+    "lint": "eslint . --fix",
+    "format": "prettier --write .",
+    "clean": "pnpm clean:dist && pnpm clean:generated",
+    "clean:dist": "rm -rf dist",
+    "clean:generated": "rm -rf src/generated",
+    "generate": "fetcher-generator generate -i http://localhost:8080/v3/api-docs -o src/generated",
+    "prepublishOnly": "pnpm clean:dist && pnpm generate && pnpm build ",
+    "release": "pnpm publish --access public --no-git-checks",
+    "release:patch": "pnpm version patch && pnpm publish --access public --no-git-checks",
+    "release:minor": "pnpm version minor && pnpm publish --access public --no-git-checks",
+    "release:major": "pnpm version major && pnpm publish --access public --no-git-checks"
+  },
+  "peerDependencies": {
+    "@ahoo-wang/fetcher": "^3.0.1",
+    "@ahoo-wang/fetcher-cosec": "^3.0.1",
+    "@ahoo-wang/fetcher-decorator": "^3.0.1",
+    "@ahoo-wang/fetcher-eventstream": "^3.0.1",
+    "@ahoo-wang/fetcher-wow": "^3.0.1"
+  },
+  "devDependencies": {
+    "@ahoo-wang/fetcher-generator": "^3.8.1",
+    "@eslint/js": "^9.39.2",
+    "@types/node": "^24.10.4",
+    "@vitest/coverage-v8": "^4.0.16",
+    "@vitest/ui": "^4.0.16",
+    "eslint": "^9.39.2",
+    "globals": "^16.5.0",
+    "prettier": "^3.7.4",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.50.0",
+    "unplugin-dts": "1.0.0-beta.6",
+    "vite": "^7.3.0",
+    "vite-bundle-analyzer": "^1.3.2",
+    "vitest": "^4.0.16"
+  }
+}

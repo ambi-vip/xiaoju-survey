@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  # MongoDB 数据库
+  mongo:
+    image: mongo:4
+    container_name: xiaoju-survey-mongo-dev
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin123
+      MONGO_INITDB_DATABASE: xiaoju_survey_dev
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-dev-volume:/data/db
+    networks:
+      - xiaoju-survey-dev
+
+  # Redis (缓存和会话)
+  redis:
+    image: redis:7-alpine
+    container_name: xiaoju-survey-redis-dev
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-dev-volume:/data
+    networks:
+      - xiaoju-survey-dev
+
+  # MinIO (对象存储 - 开发环境)
+  minio:
+    image: minio/minio:latest
+    container_name: xiaoju-survey-minio-dev
+    restart: always
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin123
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio-dev-volume:/data
+    networks:
+      - xiaoju-survey-dev
+
+volumes:
+  mongo-dev-volume:
+    driver: local
+  redis-dev-volume:
+    driver: local
+  minio-dev-volume:
+    driver: local
+
+networks:
+  xiaoju-survey-dev:
+    driver: bridge
