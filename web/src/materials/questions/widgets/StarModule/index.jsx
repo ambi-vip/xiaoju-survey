@@ -38,6 +38,10 @@ export default defineComponent({
       default: () => {
         return {}
       }
+    },
+    allowHalf: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['change'],
@@ -116,7 +120,10 @@ export default defineComponent({
       onMoreDataChange,
       rangeConfig,
       selectMoreView,
-      confirmStar
+      confirmStar,
+      starMin,
+      starMax,
+      allowHalf
     } = this
 
     return (
@@ -124,8 +131,11 @@ export default defineComponent({
         <BaseRate
           name={field}
           value={value}
+          min={starMin}
+          max={starMax}
           readonly={readonly}
           iconClass={starClass}
+          allowHalf={allowHalf}
           onChange={confirmStar}
         />
         {currentRangeConfig && <p class="explain radio-star">{currentRangeConfig.explain}</p>}

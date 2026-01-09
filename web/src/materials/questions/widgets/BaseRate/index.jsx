@@ -27,6 +27,10 @@ export default defineComponent({
     readonly: {
       type: Boolean,
       default: false
+    },
+    allowHalf: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['change'],
@@ -57,14 +61,31 @@ export default defineComponent({
         rating.value = num
       }
     }
+    const getRatingClass = (num) => {
+      const { value, allowHalf } = props
+      if (allowHalf) {
+        // 半选模式：判断是否全选、半选或未选
+        if (value >= num) {
+          return 'on'
+        } else if (value >= num - 0.5) {
+          return 'half'
+        } else {
+          return 'off'
+        }
+      } else {
+        // 整选模式
+        return value >= num ? 'on' : 'off'
+      }
+    }
     return {
       rating,
       range,
-      handleClick
+      handleClick,
+      getRatingClass
     }
   },
   render() {
-    const { rating, range, iconClass } = this
+    const { rating, range, iconClass, getRatingClass } = this
 
     return (
       <div class="rate-wrapper-main">
@@ -72,7 +93,7 @@ export default defineComponent({
           {range.map((num, index) => {
             return (
               <div
-                class={['rate-item', num <= rating ? 'on' : 'off', iconClass]}
+                class={['rate-item', getRatingClass(num), iconClass]}
                 key={'rate' + index}
                 onClick={() => {
                   this.handleClick(num)

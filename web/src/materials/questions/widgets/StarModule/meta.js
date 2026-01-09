@@ -1,3 +1,4 @@
+import { ElMessage } from 'element-plus'
 import basicConfig from '@materials/questions/common/config/basicConfig'
 
 const meta = {
@@ -66,6 +67,12 @@ const meta = {
       defaultValue: 'star'
     },
     {
+      name: 'allowHalf',
+      propType: Boolean,
+      description: '是否允许半选',
+      defaultValue: false
+    },
+    {
       name: 'rangeConfig',
       propType: Object,
       description: '这是用于描述评分高级设置',
@@ -97,6 +104,29 @@ const meta = {
           value: 'number'
         }
       ]
+    },
+    {
+      name: 'starMax',
+      title: '最大分值',
+      key: 'starMax',
+      type: 'SelectSetter',
+      options: [3, 4, 5, 6, 7, 8, 9, 10].map((v) => ({
+        value: v,
+        label: v
+      })),
+      validate: (val, moduleConfig) => {
+        if (moduleConfig['starMin'] && val < moduleConfig['starMin']) {
+          ElMessage.info('最大值不可小于最小值')
+          return false
+        }
+        return true
+      }
+    },
+    {
+      name: 'allowHalf',
+      title: '允许半星',
+      key: 'allowHalf',
+      type: 'SwitchSetter'
     }
   ],
   editConfigure: {
