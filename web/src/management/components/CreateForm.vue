@@ -25,7 +25,9 @@
     </el-form-item>
     <el-form-item prop="surveyType" label="问卷类型">
       <el-radio-group v-model="form.surveyType">
-        <el-radio v-for="item in surveyTypeList" :value="item.type" :key="item.type">{{ item.title }}</el-radio>
+        <el-radio v-for="item in surveyTypeList" :value="item.type" :key="item.type">{{
+          item.title
+        }}</el-radio>
       </el-radio-group>
     </el-form-item>
     <el-form-item prop="groupId" label="分组" v-if="menuType === MenuType.PersonalGroup">
@@ -45,11 +47,11 @@
   </el-form>
 </template>
 <script setup lang="ts">
-import { computed, reactive, ref, toRefs } from 'vue';
+import { computed, reactive, ref, toRefs } from 'vue'
 import { MenuType, GroupState } from '@/management/utils/workSpace'
 import { useWorkSpaceStore } from '@/management/stores/workSpace'
-import { storeToRefs } from 'pinia';
-import { SURVEY_TYPE_LIST } from '../pages/create/types';
+import { storeToRefs } from 'pinia'
+import { SURVEY_TYPE_LIST } from '../pages/create/types'
 
 const emit = defineEmits<{
   cancel: []
@@ -80,7 +82,8 @@ const state = reactive({
     title: '问卷调研',
     remark: '问卷调研',
     surveyType: 'normal',
-    groupId: props.groupId === GroupState.All || props.groupId === GroupState.Not ? '' : props.groupId
+    groupId:
+      props.groupId === GroupState.All || props.groupId === GroupState.Not ? '' : props.groupId
   }
 })
 const { rules, form } = toRefs(state)
@@ -99,6 +102,5 @@ const onConfirm = () => {
     }
   })
 }
-
 </script>
 <style scoped></style>

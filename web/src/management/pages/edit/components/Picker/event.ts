@@ -1,5 +1,5 @@
 interface IEvent {
-  handleConfirm: () => void,
+  handleConfirm: () => void
   handleCancel: () => void
 }
 

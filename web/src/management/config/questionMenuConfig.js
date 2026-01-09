@@ -13,6 +13,13 @@ export const menuItems = {
     icon: 'tixing-duohangshuru',
     title: '多行输入框'
   },
+  datetime: {
+    type: 'datetime',
+    snapshot: '/imgs/question-type-snapshot/iL84te6xxU1657702189333.webp',
+    path: 'DateTimeModule',
+    icon: 'tixing-danhangshuru',
+    title: '日期时间'
+  },
   radio: {
     type: 'radio',
     snapshot: '/imgs/question-type-snapshot/TgeRDfURJZ1657702220602.webp',
@@ -67,12 +74,13 @@ export const menuItems = {
 const menuGroup = [
   {
     title: '输入类题型',
-    questionList: ['text', 'textarea']
+    questionList: ['text', 'textarea', 'datetime']
   },
   {
     title: '选择类题型',
     questionList: ['radio', 'checkbox', 'binary-choice', 'radio-star', 'radio-nps', 'vote']
-  }, {
+  },
+  {
     title: '高级题型',
     questionList: ['cascader']
   }

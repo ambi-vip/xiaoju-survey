@@ -132,7 +132,11 @@ export const useSurveyListStore = defineStore('surveyList', () => {
   } = useSearchSurvey()
 
   const workSpaceStore = useWorkSpaceStore()
-  async function getSurveyList(payload: { curPage?: number; pageSize?: number; isRecycleBin?: boolean }) {
+  async function getSurveyList(payload: {
+    curPage?: number
+    pageSize?: number
+    isRecycleBin?: boolean
+  }) {
     const filterString = JSON.stringify(
       listFilter.value.filter((item) => {
         return item.condition[0].value
@@ -147,7 +151,7 @@ export const useSurveyListStore = defineStore('surveyList', () => {
         order: orderString,
         workspaceId: workSpaceStore.workSpaceId,
         groupId: workSpaceStore.groupId,
-        isRecycleBin: payload?.isRecycleBin || false,
+        isRecycleBin: payload?.isRecycleBin || false
       }
 
       const res: any = await getSurveyListReq(params)

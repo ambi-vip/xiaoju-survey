@@ -22,7 +22,7 @@ services:
     container_name: xiaoju-survey
     restart: always
     ports:
-      - "8080:8080" # API端口
+      - "8088:8088" # API端口
     environment:
       XIAOJU_SURVEY_MONGO_URL: mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@xiaoju-survey-mongo:27017 # docker-compose 会根据容器名称自动处理
       XIAOJU_SURVEY_MONGO_AUTH_SOURCE: ${XIAOJU_SURVEY_MONGO_AUTH_SOURCE} # 如使用mongo官方镜像，并且设置了MONGO_INITDB_ROOT_USERNAME和MONGO_INITDB_ROOT_PASSWORD，默认值是admin

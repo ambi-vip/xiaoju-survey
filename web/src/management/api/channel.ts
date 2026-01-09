@@ -19,5 +19,5 @@ export const deleteChannel = ({ channelId }: any) => {
 }
 
 export const changeChannelStatus = (channelId: string, status: string) => {
-  return axios.post(`/channel/status`, { channelId, status})
+  return axios.post(`/channel/status`, { channelId, status })
 }

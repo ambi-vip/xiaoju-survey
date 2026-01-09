@@ -1,0 +1,85 @@
+@import '@materials/questions/common/css/default.scss';
+
+.datetime-wrapper {
+  width: 100%;
+  font-size: 0;
+
+  .datetime-input {
+    outline: none;
+    font-size: 0.56rem;
+    padding: 0.4rem;
+    border-radius: 0.08rem;
+    background-color: #fff;
+    vertical-align: top;
+
+    border: 1px solid $border-color;
+    width: 200%;
+    height: 1.61rem;
+
+    transform: scale(0.5, 0.5);
+    transform-origin: left top;
+    box-sizing: border-box;
+    margin-bottom: -0.81rem;
+    color: $font-color;
+
+    &:not([readonly]):hover {
+      border: 1px solid $primary-color;
+    }
+
+    &:focus {
+      border: 1px solid $primary-color;
+      outline: none;
+    }
+
+    &::-webkit-input-placeholder {
+      /* WebKit browsers */
+      font-size: 0.56rem;
+      font-weight: 300;
+      color: $placeholder-color;
+    }
+
+    &:-moz-placeholder {
+      /* Mozilla Firefox 4 to 18 */
+      font-size: 0.56rem;
+      font-weight: 300;
+      color: $placeholder-color;
+    }
+
+    &::-moz-placeholder {
+      /* Mozilla Firefox 19+ */
+      font-size: 0.56rem;
+      font-weight: 300;
+      color: $placeholder-color;
+    }
+
+    &:-ms-input-placeholder {
+      /* Internet Explorer 10+ */
+      font-size: 0.56rem;
+      font-weight: 300;
+      color: $placeholder-color;
+    }
+
+    // 只读状态样式
+    &[readonly] {
+      background-color: #f5f7fa;
+      border-color: $border-color;
+      color: #c0c4cc;
+      cursor: not-allowed;
+    }
+
+    // 移除原生日期选择器的图标(部分浏览器)
+    &::-webkit-calendar-picker-indicator {
+      cursor: pointer;
+      opacity: 0.6;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    // 只读状态下隐藏日历图标
+    &[readonly]::-webkit-calendar-picker-indicator {
+      display: none;
+    }
+  }
+}

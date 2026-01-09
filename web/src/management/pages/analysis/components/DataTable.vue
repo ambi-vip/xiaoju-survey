@@ -23,7 +23,7 @@
               @click="onPreviewImage"
               @mouseover="onPopoverRefOver(scope, 'head')"
               :ref="(el) => (popoverRefMap[scope.column.id] = el)"
-              v-html="getContent(item.title) "
+              v-html="getContent(item.title)"
             >
             </span>
           </div>

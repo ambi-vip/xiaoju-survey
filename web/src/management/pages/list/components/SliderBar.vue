@@ -27,7 +27,7 @@
         </template>
       </el-menu-item>
 
-      <div v-else> 
+      <div v-else>
         <el-menu-item
           :class="[
             index === 0 ? 'bottom' : '',
@@ -69,7 +69,6 @@
           </el-menu-item>
         </el-sub-menu>
       </div>
-
     </template>
   </el-menu>
 </template>
@@ -203,6 +202,6 @@ const handleMenu = (id: string) => {
   background: #fef6e6 100% !important;
 }
 .recycle-bin-item {
-  height: 56px!important;
+  height: 56px !important;
 }
 </style>

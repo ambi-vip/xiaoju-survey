@@ -1,33 +1,33 @@
 <template>
-    <div>
-      <div class="header">
-        <h3>方式一： API调用</h3>
-        <el-button plain @click="copyCode(code, 'api')" >{{ buttonLabel  }}</el-button>
-      </div>
-      <pre><code>{{ code }}</code></pre>
-      <div class="header">
-        <h3>方式二： 组件调用</h3>
-        <el-button plain  @click="copyCode(code1, 'component')" >{{ buttonLabel1 }}</el-button>
-      </div>
-      <pre><code>{{ code1 }}</code></pre>
+  <div>
+    <div class="header">
+      <h3>方式一： API调用</h3>
+      <el-button plain @click="copyCode(code, 'api')">{{ buttonLabel }}</el-button>
     </div>
-  </template>
-  
-  <script lang="ts" setup>
-  import { ref, toRefs } from 'vue';
-  import copy from 'copy-to-clipboard';
+    <pre><code>{{ code }}</code></pre>
+    <div class="header">
+      <h3>方式二： 组件调用</h3>
+      <el-button plain @click="copyCode(code1, 'component')">{{ buttonLabel1 }}</el-button>
+    </div>
+    <pre><code>{{ code1 }}</code></pre>
+  </div>
+</template>
 
-  const buttonLabel =ref('复制代码')
+<script lang="ts" setup>
+import { ref, toRefs } from 'vue'
+import copy from 'copy-to-clipboard'
 
-  const props = defineProps<{
-    surveyPath: {
-      type: String;
-      required: false;
-    };
-  }>();
-  const { surveyPath } = toRefs(props);
-  
-    const code = `import { Survey } from 'xiaojusurvey-sdk-rn'
+const buttonLabel = ref('复制代码')
+
+const props = defineProps<{
+  surveyPath: {
+    type: String
+    required: false
+  }
+}>()
+const { surveyPath } = toRefs(props)
+
+const code = `import { Survey } from 'xiaojusurvey-sdk-rn'
   
   // sdk初始化
   Survey.init({
@@ -47,8 +47,8 @@
   
   Survey.close();
   `
-  const buttonLabel1 =ref('复制代码')
-  const code1 = `import { Survey, SurveyCard } from 'xiaojusurvey-sdk-rn'
+const buttonLabel1 = ref('复制代码')
+const code1 = `import { Survey, SurveyCard } from 'xiaojusurvey-sdk-rn'
 
 // sdk初始化
 Survey.init({
@@ -66,37 +66,34 @@ Survey.init({
   onError={(error) => { console.log(error.message) }}
 />
 `
-  const copyCode = (content: string, type: string) => {
+const copyCode = (content: string, type: string) => {
+  const data = copy(content)
 
-    const data = copy(content)
-
-    if (data) {
-      if(type === 'api') {
-        buttonLabel.value = '已复制'
-      } else {
-        buttonLabel1.value = '已复制'
-      }
+  if (data) {
+    if (type === 'api') {
+      buttonLabel.value = '已复制'
+    } else {
+      buttonLabel1.value = '已复制'
     }
-  };
+  }
+}
+</script>
 
-  </script>
-  
-  <style scoped>
-  .header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 20px 0 10px 0;
+<style scoped>
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0 10px 0;
+}
+pre {
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+}
 
-  }
-  pre {
-    background-color: #f5f5f5;
-    padding: 10px;
-    border-radius: 5px;
-    overflow-x: auto;
-  }
-  
-  code {
-    color: #333;
-  }
-  </style>
+code {
+  color: #333;
+}
+</style>

@@ -8,7 +8,7 @@ export enum QUESTION_TYPE {
   RADIO_STAR = 'radio-star',
   RADIO_NPS = 'radio-nps',
   VOTE = 'vote',
-  CASCADER = 'cascader',
+  CASCADER = 'cascader'
 }
 
 // 题目类型标签映射对象
@@ -21,7 +21,7 @@ export const typeTagLabels: Record<QUESTION_TYPE, string> = {
   [QUESTION_TYPE.RADIO_STAR]: '评分',
   [QUESTION_TYPE.RADIO_NPS]: 'NPS评分',
   [QUESTION_TYPE.VOTE]: '投票',
-  [QUESTION_TYPE.CASCADER]: '多级联动',
+  [QUESTION_TYPE.CASCADER]: '多级联动'
 }
 
 // 输入类题型

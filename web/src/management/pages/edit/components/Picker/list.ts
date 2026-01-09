@@ -2,30 +2,33 @@ import { ref, computed } from 'vue'
 import type { Ref } from 'vue'
 
 interface IList {
-  box: Ref,
-  list: Ref<Array<any>>,
-  getOffsetY: any,
-  getStyle: any,
-  handleMove: (e: TouchEvent) => void,
-  handleStart: (e: TouchEvent) => void,
-  handleEnd: (e: TouchEvent) => void,
-  goItem: (idx: number) => void,
-  resetData: () => void,
-  index: Ref<number>,
-  isTouch:boolean
+  box: Ref
+  list: Ref<Array<any>>
+  getOffsetY: any
+  getStyle: any
+  handleMove: (e: TouchEvent) => void
+  handleStart: (e: TouchEvent) => void
+  handleEnd: (e: TouchEvent) => void
+  goItem: (idx: number) => void
+  resetData: () => void
+  index: Ref<number>
+  isTouch: boolean
 }
 
-const useList = (props: any): IList => { 
+const useList = (props: any): IList => {
   const colors = ['gray', '#ccc', '#ddd', '#eee']
-  const scales = [.96, .9, .88, .84]
+  const scales = [0.96, 0.9, 0.88, 0.84]
   const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0
-  let startY: number, activeIndex = 0, isDragging = false
+  let startY: number,
+    activeIndex = 0,
+    isDragging = false
   const box = ref()
   const offY = ref()
   const index = ref(0)
   const list = ref(props.list)
   const getStyle = (idx: number) => {
-    let color = '#000', scale = 1
+    let color = '#000',
+      scale = 1
     const len = colors.length - 1
     if (idx > activeIndex) {
       const _idx = idx - activeIndex > len ? len : idx - activeIndex - 1
@@ -44,7 +47,7 @@ const useList = (props: any): IList => {
     let timer: any = null
     return function (args: any) {
       if (timer) {
-        return 
+        return
       }
       timer = setTimeout(() => {
         callback(args)
@@ -55,7 +58,7 @@ const useList = (props: any): IList => {
 
   // 移动的实现
   const move = throttle((e: any) => {
-    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY
     offY.value = clientY - startY
     if (offY.value > 40) {
       offY.value = 40
@@ -73,17 +76,17 @@ const useList = (props: any): IList => {
     activeIndex = index.value
   })
 
-  const goItem = (idx: number) => { 
-    index.value = idx;
-    activeIndex = idx;
+  const goItem = (idx: number) => {
+    index.value = idx
+    activeIndex = idx
   }
 
   const resetData = () => {
-    startY = 0;
+    startY = 0
     activeIndex = 0
     index.value = 0
-    box.value = null;
-    offY.value = null;
+    box.value = null
+    offY.value = null
   }
 
   const handleStart = (e: MouseEvent | TouchEvent) => {
@@ -95,7 +98,6 @@ const useList = (props: any): IList => {
 
     document.addEventListener('mousemove', handleMove)
     document.addEventListener('mouseup', handleEnd)
-   
   }
 
   const handleMove = (e: MouseEvent | TouchEvent) => {
@@ -125,7 +127,7 @@ const useList = (props: any): IList => {
       }
     }
   })
-  
+
   return {
     box,
     list,
@@ -142,4 +144,3 @@ const useList = (props: any): IList => {
 }
 
 export default useList
-

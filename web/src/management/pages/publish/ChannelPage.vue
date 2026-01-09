@@ -3,7 +3,7 @@
     <LeftMenu class="left" />
     <div class="right">
       <div class="topNav">
-        <Navbar title="投放管理" />  
+        <Navbar title="投放管理" />
       </div>
       <div class="content">
         <template v-if="curStatus !== 'new'">
@@ -21,8 +21,8 @@
                 />
               </div>
             </div>
-            
-            <br/>
+
+            <br />
             <div class="box-channelList" v-if="channelTotal > 0">
               <h2>投放列表</h2>
               <div class="main-channel-wrap">
@@ -32,7 +32,7 @@
             <div class="box-channelList">
               <h2>投放方式</h2>
               <div class="main-channel-wrap">
-                <ChannelCards/>
+                <ChannelCards />
               </div>
             </div>
           </div>
@@ -68,7 +68,6 @@ const defaultConfig = {
 const channelStore = useChannelStore()
 const editStore = useEditStore()
 const { schema, init, setSurveyId } = editStore
-
 
 const { channelTotal } = storeToRefs(channelStore)
 const metaData = toRef(schema, 'metaData')
@@ -119,12 +118,11 @@ onMounted(async () => {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    
 
     background: #f6f7f9;
     // padding: 30px 40px 50px 40px;
     padding-left: 80px;
-    .topNav{
+    .topNav {
       width: 100%;
       height: 55px;
       background: #fff;
@@ -160,4 +158,3 @@ onMounted(async () => {
   }
 }
 </style>
-  

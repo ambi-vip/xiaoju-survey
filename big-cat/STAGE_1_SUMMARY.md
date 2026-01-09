@@ -202,8 +202,8 @@ sleep 10
 ```
 
 ### 访问服务
-- Swagger UI: http://localhost:8080/swagger-ui.html
-- Actuator: http://localhost:8080/actuator/health
+- Swagger UI: http://localhost:8088/swagger-ui.html
+- Actuator: http://localhost:8088/actuator/health
 - MongoDB: mongodb://localhost:27017
 
 ## 🔍 验证检查清单

@@ -145,7 +145,6 @@ export const useSurveyStore = defineStore('survey', () => {
     pageConf.value = option.pageConf
 
     questionStore.initOptionCountInfo()
-
   }
 
   const initSurvey = (option) => {

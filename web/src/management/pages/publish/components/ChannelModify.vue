@@ -1,10 +1,5 @@
 <template>
-   <el-dialog
-    :modelValue="visible"
-    title="APP嵌入式问卷"
-    width="500"
-    :before-close="handleClose"
-  >
+  <el-dialog :modelValue="visible" title="APP嵌入式问卷" width="500" :before-close="handleClose">
     <el-form
       ref="formRef"
       style="max-width: 600px"
@@ -15,44 +10,36 @@
       <el-form-item
         label="投放名称："
         prop="name"
-        :rules="[
-          { required: true, message: '请输入投放名称', trigger: 'blur' },
-        ]"
+        :rules="[{ required: true, message: '请输入投放名称', trigger: 'blur' }]"
       >
-        <el-input
-          v-model.number="channelForm.name"
-          type="text"
-          autocomplete="off"
-        />
+        <el-input v-model.number="channelForm.name" type="text" autocomplete="off" />
       </el-form-item>
     </el-form>
     <template #footer>
       <div class="dialog-footer">
         <el-button @click="handleClose">取消</el-button>
-        <el-button type="primary" @click="handleConfirm">
-          确认
-        </el-button>
+        <el-button type="primary" @click="handleConfirm"> 确认 </el-button>
       </div>
     </template>
   </el-dialog>
-</template>  
+</template>
 <script lang="ts" setup>
 import { shallowRef, reactive, watch } from 'vue'
 const props = defineProps({
   visible: {
     type: Boolean,
-    default: false,
+    default: false
   },
   channel: {
     type: Object,
     default: () => {
       return {}
-    },
-  },
+    }
+  }
 })
 const emit = defineEmits(['close', 'confirm'])
 const channelForm = reactive({
-  name: '',
+  name: ''
 })
 const formRef = shallowRef()
 watch(

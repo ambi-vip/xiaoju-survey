@@ -48,7 +48,7 @@ export default defineComponent({
       type: Number,
       default: 10
     },
-    quotaDisplay:{
+    quotaDisplay: {
       type: Boolean,
       default: true
     }
@@ -146,22 +146,26 @@ export default defineComponent({
                               v-html={filterXSS(item.text)}
                               class="item-title-text"
                               style="display: block; height: auto; padding-top: 9px"
-                            ></span>    
+                            ></span>
                           )}
                           {
-                          // 如果设置了配额并且展示配额
-                          !this.readonly && this.quotaDisplay && (item.quota && item.quota !== "0") && (
-                            <span
-                              class="remaining-text"
-                              style={{
-                                display: 'block',
-                                fontSize: 'smaller',
-                                color: item.disabled ? '#EB505C' : '#92949D'
-                              }}
-                            >
-                              剩余{ item.disabled ? 0 : item.release }
-                            </span>
-                          )}
+                            // 如果设置了配额并且展示配额
+                            !this.readonly &&
+                              this.quotaDisplay &&
+                              item.quota &&
+                              item.quota !== '0' && (
+                                <span
+                                  class="remaining-text"
+                                  style={{
+                                    display: 'block',
+                                    fontSize: 'smaller',
+                                    color: item.disabled ? '#EB505C' : '#92949D'
+                                  }}
+                                >
+                                  剩余{item.disabled ? 0 : item.release}
+                                </span>
+                              )
+                          }
                           {slots.vote?.({
                             option: item,
                             voteTotal: this.voteTotal

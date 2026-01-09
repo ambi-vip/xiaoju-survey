@@ -6,20 +6,21 @@
           <span>输入区</span>
           <el-button type="primary" link @click="showExample = true">输入示例</el-button>
         </div>
-        <textarea class="text-input" v-model="text" @input="onInput" ></textarea>
+        <textarea class="text-input" v-model="text" @input="onInput"></textarea>
         <p v-if="!text" class="custom-placeholder">输入区</p>
       </div>
     </MultiSourcePreviewPanel>
-    <el-dialog
-      v-model="showExample"
-      title="编辑示例"
-      width="500"
-    >
+    <el-dialog v-model="showExample" title="编辑示例" width="500">
       <div class="question-example-wrapper">
-        <div v-for="item in importExamples" :key="item.type" :id="`copy-${item.type}-example-wrapper`" class="questionType-example">
-          <p class="example-title">示例：{{item.title}}</p>
+        <div
+          v-for="item in importExamples"
+          :key="item.type"
+          :id="`copy-${item.type}-example-wrapper`"
+          class="questionType-example"
+        >
+          <p class="example-title">示例：{{ item.title }}</p>
           <div class="example-content">
-            <p :class='`copy-${item.type}-example`' v-html="item.content"></p>
+            <p :class="`copy-${item.type}-example`" v-html="item.content"></p>
             <span class="copy-text" @click="coypText(item)">复制文本</span>
           </div>
         </div>
@@ -29,21 +30,19 @@
 </template>
 
 <script setup lang="ts">
-import MultiSourcePreviewPanel from '@/management/components/MultiSourcePreviewPanel.vue';
-import { computed, reactive, ref } from 'vue';
+import MultiSourcePreviewPanel from '@/management/components/MultiSourcePreviewPanel.vue'
+import { computed, reactive, ref } from 'vue'
 import { debounce } from 'lodash-es'
-import { textToSchema } from '@/management/utils/textToSchema';
+import { textToSchema } from '@/management/utils/textToSchema'
 import { filterQuestionPreviewData } from '@/management/utils/index'
 import textImportExample from '@/management/config/textImportExample'
 import copy from 'copy-to-clipboard'
-import { ElMessage } from 'element-plus';
-
+import { ElMessage } from 'element-plus'
 
 const emit = defineEmits(['change'])
 
 const text = ref('')
 const showExample = ref(false)
-
 
 const questionList = reactive([] as Array<Record<string, any>>)
 
@@ -78,7 +77,6 @@ const coypText = (item: { content: string }) => {
     })
   }
 }
-
 </script>
 
 <style lang="scss" scoped>
@@ -130,7 +128,7 @@ const coypText = (item: { content: string }) => {
 }
 .questionType-example {
   width: 100%;
-  border: 1px solid rgba(227,228,232,1);
+  border: 1px solid rgba(227, 228, 232, 1);
   border-radius: 2px;
   margin-top: 18px;
   padding: 10px;
@@ -146,7 +144,7 @@ const coypText = (item: { content: string }) => {
     white-space: pre;
     .copy-text {
       cursor: pointer;
-      color: #FAA600;
+      color: #faa600;
       font-size: 12px;
     }
   }

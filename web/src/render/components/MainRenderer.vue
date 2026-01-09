@@ -21,8 +21,8 @@ import { useSurveyStore } from '../stores/survey'
 
 const surveyStore = useSurveyStore()
 const questionStore = useQuestionStore()
-const { renderData, needHideFields, showLogicHideFields, isFinallyPage } = storeToRefs(questionStore)
-
+const { renderData, needHideFields, showLogicHideFields, isFinallyPage } =
+  storeToRefs(questionStore)
 
 const { rules, formValues } = storeToRefs(surveyStore)
 
@@ -31,23 +31,32 @@ const handleChangeData = (data: any) => {
 }
 
 // 在适当的地方调用 updatePageIndex 方法
-watch(() => renderData.value, (value: any) => {
-  if (value.length) {
-    const arr = needHideFields.value as Array<string>
-    const displaylist = value[0].filter((item: any) => !arr.includes(item.field))
-    if(displaylist.length === 0 && !isFinallyPage.value){
-      questionStore.addPageIndex()
+watch(
+  () => renderData.value,
+  (value: any) => {
+    if (value.length) {
+      const arr = needHideFields.value as Array<string>
+      const displaylist = value[0].filter((item: any) => !arr.includes(item.field))
+      if (displaylist.length === 0 && !isFinallyPage.value) {
+        questionStore.addPageIndex()
+      }
     }
   }
-})
-watch(() => { return needHideFields.value.concat(showLogicHideFields.value) }, (value: any)=> {
-  if(renderData.value.length ){
-    const displaylist = renderData.value[0].filter((item: any) => !value.includes(item.field))
-    if(displaylist.length === 0 && !isFinallyPage.value){
-      questionStore.addPageIndex()
+)
+watch(
+  () => {
+    return needHideFields.value.concat(showLogicHideFields.value)
+  },
+  (value: any) => {
+    if (renderData.value.length) {
+      const displaylist = renderData.value[0].filter((item: any) => !value.includes(item.field))
+      if (displaylist.length === 0 && !isFinallyPage.value) {
+        questionStore.addPageIndex()
+      }
     }
+  },
+  {
+    deep: true
   }
-}, {
-  deep: true
-})
+)
 </script>

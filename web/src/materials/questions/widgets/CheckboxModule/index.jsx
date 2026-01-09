@@ -42,7 +42,7 @@ export default defineComponent({
       type: [Number, String],
       default: 1
     },
-    quotaDisplay:{
+    quotaDisplay: {
       type: Boolean,
       default: true
     }
@@ -64,24 +64,27 @@ export default defineComponent({
       return options.map((item) => {
         return {
           ...item,
-          disabled: (item.release <= 0) || isDisabled(item)
+          disabled: item.release <= 0 || isDisabled(item)
         }
       })
     })
     // 兼容断点续答情况下选项配额为0的情况
-    watch(() => myOptions, (value) => {
-      const disabledHash = myOptions.value.filter(i => i.disabled).map(i => i.hash)
-      if (value && disabledHash.length) {
-        disabledHash.forEach(hash => {
-          const index = value.indexOf(hash)
-          if( index> -1) {
-            const newValue = [...value]
-            newValue.splice(index, 1)
-            onChange(newValue)
-          }
-        })
+    watch(
+      () => myOptions,
+      (value) => {
+        const disabledHash = myOptions.value.filter((i) => i.disabled).map((i) => i.hash)
+        if (value && disabledHash.length) {
+          disabledHash.forEach((hash) => {
+            const index = value.indexOf(hash)
+            if (index > -1) {
+              const newValue = [...value]
+              newValue.splice(index, 1)
+              onChange(newValue)
+            }
+          })
+        }
       }
-    })
+    )
     const onChange = (value) => {
       const key = props.field
       emit('change', {
@@ -116,7 +119,8 @@ export default defineComponent({
     }
   },
   render() {
-    const { readonly, field, myOptions, onChange, maxNum, value, quotaDisplay, selectMoreView } = this
+    const { readonly, field, myOptions, onChange, maxNum, value, quotaDisplay, selectMoreView } =
+      this
     return (
       <BaseChoice
         uiTarget="checkbox"

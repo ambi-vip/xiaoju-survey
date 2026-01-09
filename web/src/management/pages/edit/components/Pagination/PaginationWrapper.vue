@@ -84,9 +84,9 @@ const addPageControls = () => {
   setCurrentEditOne(null)
   addQuestion({ question: newQuestion, index: newQuestionIndex.value })
   setTimeout(() => {
-    const { endIndex } = getSorter();
-    setCurrentEditOne(endIndex - 1);
-  });
+    const { endIndex } = getSorter()
+    setCurrentEditOne(endIndex - 1)
+  })
   addPage()
 }
 </script>

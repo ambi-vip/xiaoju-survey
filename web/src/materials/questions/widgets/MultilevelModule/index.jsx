@@ -1,4 +1,4 @@
-import { defineComponent} from 'vue'
+import { defineComponent } from 'vue'
 import BaseMultilevel from './BaseMultilevel/index.vue'
 
 export default defineComponent({
@@ -19,10 +19,10 @@ export default defineComponent({
     multilevelData: {
       type: Object,
       default: () => {}
-    },
+    }
   },
   emits: ['change'],
-  setup(props, { emit }) { 
+  setup(props, { emit }) {
     const onChange = (value) => {
       const key = props.field
       emit('change', {
@@ -36,10 +36,15 @@ export default defineComponent({
       onChange
     }
   },
-  render() { 
-    const {  props } = this
+  render() {
+    const { props } = this
     return (
-      <BaseMultilevel multilevelData={props.multilevelData} readonly={props.readonly} value={props.value} onChange={this.onChange}   />
+      <BaseMultilevel
+        multilevelData={props.multilevelData}
+        readonly={props.readonly}
+        value={props.value}
+        onChange={this.onChange}
+      />
     )
   }
 })

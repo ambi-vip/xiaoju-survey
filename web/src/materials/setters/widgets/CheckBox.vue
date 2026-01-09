@@ -24,7 +24,6 @@ const props = defineProps<Props>()
 
 const modelValue = ref(props.formConfig.value)
 
-
 const handleCheckboxChange = (value: boolean) => {
   const key = props.formConfig.key
 

@@ -1,31 +1,29 @@
 <template>
   <div class="ai-generate-container">
     <!-- 左侧聊天输入区域 -->
-    <div class="left-panel">      
+    <div class="left-panel">
       <div class="chat-container" ref="chatContainerRef">
         <div class="panel-background"></div>
         <div v-if="messages.length === 0" class="initial-state">
           <div class="welcome-title">您好，我叫XIAOJU</div>
-          <div class="welcome-sub">欢迎使用AI生成问卷！目前，我能够通过自然语言生成基础调研类问卷。例如，我可以生成：</div>
+          <div class="welcome-sub">
+            欢迎使用AI生成问卷！目前，我能够通过自然语言生成基础调研类问卷。例如，我可以生成：
+          </div>
           <div class="example-buttons">
-            <div 
-              class="example-button"
-              @click="handleExampleClick('课程签到问卷')"
-            >课程签到问卷</div>
-            <div 
-              class="example-button"
-              @click="handleExampleClick('平台用户满意度调研问卷')"
-            >平台用户满意度调研问卷</div>
-            <div 
-              class="example-button"
-              @click="handleExampleClick('奖品发放地址收集问卷')"
-            >奖品发放地址收集问卷</div>
-        
+            <div class="example-button" @click="handleExampleClick('课程签到问卷')">
+              课程签到问卷
+            </div>
+            <div class="example-button" @click="handleExampleClick('平台用户满意度调研问卷')">
+              平台用户满意度调研问卷
+            </div>
+            <div class="example-button" @click="handleExampleClick('奖品发放地址收集问卷')">
+              奖品发放地址收集问卷
+            </div>
           </div>
         </div>
-        
-        <MsgItem 
-          v-for="(msg, index) in messages" 
+
+        <MsgItem
+          v-for="(msg, index) in messages"
           :key="msg.id"
           :message="msg"
           @regenerate="handleRegenerate(index)"
@@ -33,7 +31,6 @@
           @like="handleLike"
           @dislike="handleDislike"
         />
-        
       </div>
       <div class="fn-box">
         <transition name="fade-in-linear">
@@ -45,9 +42,7 @@
           >
             <div class="formula-title">
               <span class="title">问卷生成万能公式</span>
-              <span class="copy" @click="handleCopyTemplate">
-                复制
-              </span>
+              <span class="copy" @click="handleCopyTemplate"> 复制 </span>
             </div>
             <p class="formula-tip">
               <span class="bold">1.调研对象：</span>
@@ -71,7 +66,11 @@
         </transition>
 
         <div class="left-box">
-          <div class="formula" @mouseenter="onQuestionTemplateEnter" @mouseleave="onQuestionTemplateLeave">
+          <div
+            class="formula"
+            @mouseenter="onQuestionTemplateEnter"
+            @mouseleave="onQuestionTemplateLeave"
+          >
             <i class="iconfont icon-tixing-yonghuxieyi"></i>
             <span>提问模板</span>
           </div>
@@ -94,18 +93,17 @@
             @keydown="handleKeydown"
             placeholder="请输入您想生成的问卷相关描述（目前暂不支持通过对话修改已生成的问卷）"
           />
-          <img 
-            src="/imgs/AI/icon_Sent.svg" 
-            class="send-icon"
-            @click="() => handleGenerate()"
-          />
+          <img src="/imgs/AI/icon_Sent.svg" class="send-icon" @click="() => handleGenerate()" />
         </div>
       </div>
     </div>
 
     <!-- 右侧预览区域 -->
     <div class="right-panel">
-      <div class="questions-preview-wrapper" :style="{backgroundColor: questionList.length > 0 ? '#fff' : 'transparent'}" >
+      <div
+        class="questions-preview-wrapper"
+        :style="{ backgroundColor: questionList.length > 0 ? '#fff' : 'transparent' }"
+      >
         <div class="questions-preview-box">
           <div class="diabled-edit-mask"></div>
           <MaterialGroup
@@ -117,7 +115,7 @@
       </div>
       <div class="disclaimer">
         <span class="normal-text">问卷内容由AI生成，无法保证真实准确，仅供参考，请遵守</span>
-        <a >《AI生成问卷使用协议》</a>
+        <a>《AI生成问卷使用协议》</a>
       </div>
     </div>
   </div>
@@ -132,19 +130,21 @@ import MsgItem from './MsgItem.vue'
 import MaterialGroup from '@/management/pages/edit/components/MaterialGroup.vue'
 import { nanoid } from 'nanoid'
 
-const messages = ref<Array<{
-  id: string,
-  sender: 'user'|'ai', 
-  content: string, 
-  reasoningContent?: string, 
-  status?: 'generating'|'finished', 
-  showReset?: boolean,
-  userInput?: string
-}>>([])
+const messages = ref<
+  Array<{
+    id: string
+    sender: 'user' | 'ai'
+    content: string
+    reasoningContent?: string
+    status?: 'generating' | 'finished'
+    showReset?: boolean
+    userInput?: string
+  }>
+>([])
 const chatContainerRef = ref<HTMLElement | null>(null)
 const prompt = ref('')
 const lastPrompt = ref('')
-const isLoading = ref(false) 
+const isLoading = ref(false)
 const showQuestionTemplate = ref(false)
 const inputEl = ref<any>(null)
 let abortController: AbortController | null = null
@@ -156,7 +156,7 @@ const emit = defineEmits(['change'])
 
 const questionList = computed(() => {
   try {
-    const lastAIMessage = [...messages.value].reverse().find(m => m.sender === 'ai')
+    const lastAIMessage = [...messages.value].reverse().find((m) => m.sender === 'ai')
     return textToSchema(lastAIMessage?.content || '', { showIndex: false })
   } catch (e) {
     return []
@@ -196,21 +196,21 @@ const handleGenerate = async (userInput?: string) => {
     for (let i = 0; i < messages.value.length; i++) {
       messages.value[i].showReset = false
     }
-    lastPrompt.value = currentPrompt 
-    messages.value.push({ 
-      id: nanoid(), 
-      sender: 'user', 
+    lastPrompt.value = currentPrompt
+    messages.value.push({
+      id: nanoid(),
+      sender: 'user',
       content: currentPrompt,
       userInput: currentPrompt,
-      showReset: false,
+      showReset: false
     })
-    
+
     if (!userInput) {
       prompt.value = ''
     }
     scrollToBottom() // 用户发送后立即滚动
 
-    const loadingMessage = { 
+    const loadingMessage = {
       id: nanoid(),
       sender: 'ai' as const,
       content: 'loading',
@@ -219,26 +219,26 @@ const handleGenerate = async (userInput?: string) => {
       userInput: currentPrompt
     }
     messages.value.push(loadingMessage)
-    scrollToBottom() 
+    scrollToBottom()
 
     const idx = messages.value.length - 1
-    
+
     // 创建新的AbortController
     abortController = new AbortController()
-    
+
     try {
       const response = await fetch('/api/ai-generate/call-deepseek', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           prompt: currentPrompt
         }),
         signal: abortController.signal
       })
-      const contentType = response.headers.get('content-type');
-      if (contentType && contentType.includes("text/event-stream")) {
+      const contentType = response.headers.get('content-type')
+      if (contentType && contentType.includes('text/event-stream')) {
         if (!response.body) {
           return
         }
@@ -248,7 +248,7 @@ const handleGenerate = async (userInput?: string) => {
         let output = ''
         let reasoningOutput = ''
         let outputChunk = ''
-        await new Promise(resolve => {
+        await new Promise((resolve) => {
           const concatChunkText = async () => {
             try {
               const { done, value }: any = await Promise.race([
@@ -257,7 +257,7 @@ const handleGenerate = async (userInput?: string) => {
                   setTimeout(() => {
                     reject(new Error('网络连接超时'))
                   }, 100000)
-                }),
+                })
               ])
               if (done) {
                 return
@@ -283,18 +283,20 @@ const handleGenerate = async (userInput?: string) => {
           }
 
           const handle = async () => {
-            const chunkArr = outputChunk.split('\n').filter(item => !!item)
+            const chunkArr = outputChunk.split('\n').filter((item) => !!item)
             let curOutput = ''
             let isDone = false
             for (let i = 0; i < chunkArr.length; i++) {
               try {
-                const resultChunk = chunkArr[i].replace('data:', '').replace(new RegExp('\xa0', 'g'), '')
+                const resultChunk = chunkArr[i]
+                  .replace('data:', '')
+                  .replace(new RegExp('\xa0', 'g'), '')
                 if (resultChunk.indexOf('[DONE]') >= 0) {
                   isDone = true
                   break
                 }
                 // 为了打字效果加了延时
-                await new Promise(forResolve => {
+                await new Promise((forResolve) => {
                   setTimeout(() => {
                     forResolve(true)
                   }, 20)
@@ -329,7 +331,7 @@ const handleGenerate = async (userInput?: string) => {
             await handle()
           })
         })
-        
+
         messages.value[idx].status = 'finished'
         messages.value[idx].showReset = true
       } else {
@@ -337,10 +339,9 @@ const handleGenerate = async (userInput?: string) => {
         messages.value[idx].content = res.errmsg || res.message
         messages.value[idx].status = 'finished'
       }
-
     } catch (error) {
       // 更新加载状态为错误信息
-      const index = messages.value.findIndex(m => m.content === 'loading')
+      const index = messages.value.findIndex((m) => m.content === 'loading')
       if (index > -1) {
         let content = ''
         if (messages.value[index].content === 'loading') {
@@ -351,10 +352,9 @@ const handleGenerate = async (userInput?: string) => {
         messages.value[index].content = content
         messages.value[index].status = 'finished'
         messages.value[index].showReset = true
-
       }
     } finally {
-      isLoading.value = false 
+      isLoading.value = false
       abortController = null
     }
   }
@@ -389,13 +389,13 @@ const handleDislike = () => {
 }
 
 const TEMPLATES = {
-  '课程签到问卷': '调研对象：大学生\n调研目的：课堂效果\n题目数量期望：3道题',
-  '平台用户满意度调研问卷': '调研对象：平台用户\n调研目的：满意度调研\n题目数量期望：5道题',
-  '奖品发放地址收集问卷': '调研对象：活动中奖用户\n调研目的：收集邮寄地址\n题目数量期望：3道题'
-};
+  课程签到问卷: '调研对象：大学生\n调研目的：课堂效果\n题目数量期望：3道题',
+  平台用户满意度调研问卷: '调研对象：平台用户\n调研目的：满意度调研\n题目数量期望：5道题',
+  奖品发放地址收集问卷: '调研对象：活动中奖用户\n调研目的：收集邮寄地址\n题目数量期望：3道题'
+}
 
 const handleExampleClick = (type: keyof typeof TEMPLATES) => {
-  prompt.value = TEMPLATES[type];
+  prompt.value = TEMPLATES[type]
 }
 
 const templateContentToCopy = `调研对象：请提供关于您投放对象的描述，例如年龄、性别、职业等。
@@ -413,9 +413,9 @@ const handleCopyTemplate = async () => {
       })
     }
   } catch (err) {
-    console.error('复制失败:', err);
+    console.error('复制失败:', err)
   }
-};
+}
 
 const scrollToBottom = () => {
   nextTick(() => {
@@ -427,10 +427,10 @@ const scrollToBottom = () => {
 
 const handleScroll = () => {
   if (!chatContainerRef.value) return
-  
+
   const { scrollTop, scrollHeight, clientHeight } = chatContainerRef.value
   const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10 // 10px tolerance
-  
+
   // 如果用户滚动到底部，恢复自动滚动
   if (isAtBottom) {
     shouldAutoScroll.value = true
@@ -468,7 +468,6 @@ const onQuestionTemplateLeave = () => {
 const onInput = () => {
   prompt.value = prompt.value.slice(0, 300)
 }
-
 </script>
 
 <!-- 合并后的样式 -->
@@ -494,7 +493,7 @@ const onInput = () => {
     padding: 32px 24px 0 24px;
     scroll-behavior: smooth;
     position: relative;
-    
+
     .panel-background {
       height: 20%;
       background: url('/imgs/AI/Gradual_Background.webp') no-repeat;
@@ -509,14 +508,14 @@ const onInput = () => {
       position: absolute;
       top: 5%;
       left: 50%;
-      width: 100%;  
+      width: 100%;
       transform: translate(-50%, 0);
       text-align: center;
-    
+
       .welcome-title {
         font-family: PingFangSC;
         font-size: 20px;
-        background: linear-gradient(259deg, #FDD200 0%, #FAA600 89%);
+        background: linear-gradient(259deg, #fdd200 0%, #faa600 89%);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -528,7 +527,7 @@ const onInput = () => {
         font-weight: normal;
         line-height: normal;
         letter-spacing: normal;
-        color: #4A4C5B;
+        color: #4a4c5b;
       }
       .example-buttons {
         font-family: PingFangSC;
@@ -540,17 +539,17 @@ const onInput = () => {
         .example-button {
           padding: 12px 24px;
           border-radius: 6px;
-          background: #FEF6E6;
-          color: #4A4C5B;
+          background: #fef6e6;
+          color: #4a4c5b;
           font-size: 14px;
           font-weight: normal;
           line-height: normal;
           cursor: pointer;
           transition: all 0.2s;
-          border: 1px solid #FDD200;
-          color: #FAA600;
+          border: 1px solid #fdd200;
+          color: #faa600;
           &:hover {
-            background: #FDD200;
+            background: #fdd200;
             transform: translateY(-2px);
           }
         }
@@ -658,13 +657,15 @@ const onInput = () => {
         background: transparent;
         font-size: 14px;
       }
-      
+
       .send-icon {
         width: 64px;
         height: 64px;
         margin-top: -4px;
         cursor: pointer;
-        &:hover { filter: brightness(0.9); }
+        &:hover {
+          filter: brightness(0.9);
+        }
       }
     }
   }
@@ -706,5 +707,4 @@ const onInput = () => {
     }
   }
 }
-
 </style>

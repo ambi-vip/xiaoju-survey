@@ -79,7 +79,6 @@
           :total="groupListTotal"
           v-if="menuType === MenuType.PersonalGroup && !groupId"
         ></GroupList>
-  
       </div>
     </div>
     <SpaceModify
@@ -133,32 +132,25 @@
       <div class="text-import-header">
         <div class="return no-logo-return icon-fanhui" @click="showTextImport = false">返回</div>
         <div class="title">文本导入</div>
-        <el-button type="primary" class="publish-btn" @click="onShowCreateForm">
-          创建
-        </el-button>
+        <el-button type="primary" class="publish-btn" @click="onShowCreateForm"> 创建 </el-button>
       </div>
       <TextImport @change="onTextImportChange"></TextImport>
     </div>
     <div class="fiexed-ai-generate-wrapper" v-if="showAIGenerate">
       <div class="ai-generate-header">
-        
         <div class="nav-left">
-         <img src="/imgs/s-logo.webp" class="logo" />
-          <el-button link  @click="showAIGenerate = false">
+          <img src="/imgs/s-logo.webp" class="logo" />
+          <el-button link @click="showAIGenerate = false">
             <i class="iconfont icon-fanhui"></i>
             返回
           </el-button>
         </div>
-      <h2 class="nav-title">AI智能生成问卷</h2>
-      <el-button type="primary"  class="publish-btn"  @click="onShowCreateForm">确定创建</el-button>
+        <h2 class="nav-title">AI智能生成问卷</h2>
+        <el-button type="primary" class="publish-btn" @click="onShowCreateForm">确定创建</el-button>
       </div>
       <AIGenerate @change="onAIGenerteChange"></AIGenerate>
     </div>
-    <el-dialog
-      v-model="showCreateForm"
-      title="确定创建"
-      width="500"
-    >
+    <el-dialog v-model="showCreateForm" title="确定创建" width="500">
       <CreateForm @cancel="showCreateForm = false" @confirm="onConfirmCreate"></CreateForm>
     </el-dialog>
     <ExcelImport
@@ -188,7 +180,7 @@ import ExcelImport from './components/ExcelImport.vue'
 import AIGenerate from './components/AIGenerate.vue'
 
 import TopNav from '@/management/components/TopNav.vue'
-import CreateForm from '@/management/components/CreateForm.vue';
+import CreateForm from '@/management/components/CreateForm.vue'
 import { MenuType } from '@/management/utils/workSpace'
 
 import { useWorkSpaceStore } from '@/management/stores/workSpace'
@@ -243,7 +235,7 @@ const showExcelImport = ref(false)
 const showCreateForm = ref(false)
 const questionList = ref<Array<any>>([])
 const createMethod = ref('')
-const isRecycleBin = computed(() => menuType.value === MenuType.RecycleBin);
+const isRecycleBin = computed(() => menuType.value === MenuType.RecycleBin)
 
 const showAIGenerate = ref(false)
 
@@ -402,14 +394,14 @@ const toCreate = () => {
 }
 
 const openTextImport = () => {
-  showCreateMethod.value = false;
-  showTextImport.value = true;
+  showCreateMethod.value = false
+  showTextImport.value = true
   createMethod.value = 'textImport'
 }
 
-const opemAIGenerate = () => { 
-  showCreateMethod.value = false;
-  showAIGenerate.value = true;
+const opemAIGenerate = () => {
+  showCreateMethod.value = false
+  showAIGenerate.value = true
   createMethod.value = 'AIGenerate'
 }
 
@@ -424,15 +416,18 @@ const onShowCreateForm = () => {
   showCreateForm.value = true
 }
 
-const onConfirmCreate = async (formValue: { title: string; remark?: string; surveyType: string; groupId?: string }, callback: (success: boolean) => void) => {
+const onConfirmCreate = async (
+  formValue: { title: string; remark?: string; surveyType: string; groupId?: string },
+  callback: (success: boolean) => void
+) => {
   try {
-    switch(createMethod.value) {
+    switch (createMethod.value) {
       case 'ExcelImport':
-      case 'textImport':{
+      case 'textImport': {
         const payload: any = {
           ...formValue,
           createMethod: createMethod.value,
-          questionList: questionList.value,
+          questionList: questionList.value
         }
         if (workSpaceId.value) {
           payload.workspaceId = workSpaceId.value
@@ -452,13 +447,13 @@ const onConfirmCreate = async (formValue: { title: string; remark?: string; surv
           ElMessage.error(res?.errmsg || '创建失败')
           callback(false)
         }
-        break;
+        break
       }
-      case 'AIGenerate':{
+      case 'AIGenerate': {
         const payload: any = {
           ...formValue,
           createMethod: createMethod.value,
-          questionList: questionList.value,
+          questionList: questionList.value
         }
         if (workSpaceId.value) {
           payload.workspaceId = workSpaceId.value
@@ -478,11 +473,11 @@ const onConfirmCreate = async (formValue: { title: string; remark?: string; surv
           ElMessage.error(res?.errmsg || '创建失败')
           callback(false)
         }
-        break;
+        break
       }
       default:
         callback(false)
-        break;
+        break
     }
   } catch (error) {
     console.error('创建问卷失败:', error)
@@ -495,10 +490,9 @@ const onTextImportChange = (newQuestionList: Array<any>) => {
   questionList.value = newQuestionList
 }
 
-
 const openExcelImport = () => {
-  showCreateMethod.value = false;
-  showExcelImport.value = true;
+  showCreateMethod.value = false
+  showExcelImport.value = true
   createMethod.value = 'ExcelImport'
 }
 
@@ -517,7 +511,6 @@ const onShowCreateFormExcelImport = () => {
 const onAIGenerteChange = (newQuestionList: Array<any>) => {
   questionList.value = newQuestionList
 }
-
 </script>
 
 <style lang="scss" scoped>
@@ -671,7 +664,7 @@ const onAIGenerteChange = (newQuestionList: Array<any>) => {
     border-bottom: 1px solid #eee;
     flex-grow: 0;
     flex-shrink: 0;
- 
+
     .nav-left {
       display: flex;
       align-items: center;

@@ -61,11 +61,10 @@ const questionConfig = computed(() => {
     allOptions = allOptions.map((obj, index) => Object.assign(obj, voteOptions[index]))
     moduleConfig.voteTotal = unref(voteTotal)
   }
-  if(NORMAL_CHOICES.includes(type) &&
-    options.some(option => option.quota > 0)) {
+  if (NORMAL_CHOICES.includes(type) && options.some((option) => option.quota > 0)) {
     // 处理普通选择题的选项配额
     let { options: optionWithQuota } = useOptionsQuota(field)
-    
+
     allOptions = allOptions.map((obj, index) => Object.assign(obj, optionWithQuota[index]))
   }
   if (NORMAL_CHOICES.includes(type) && options.some((option) => option.others)) {
@@ -143,15 +142,19 @@ const logicShow = computed(() => {
   const result = showLogicEngine.value.match(props.moduleConfig.field, 'question', formValues.value)
   return result === undefined ? true : result
 })
-watch(()=> logicShow.value, (value) => {
-  if(!value){
-    questionStore.addShowLogicHideFields([props.moduleConfig.field])
-  } else {
-    questionStore.removeShowLogicHideFields([props.moduleConfig.field])
+watch(
+  () => logicShow.value,
+  (value) => {
+    if (!value) {
+      questionStore.addShowLogicHideFields([props.moduleConfig.field])
+    } else {
+      questionStore.removeShowLogicHideFields([props.moduleConfig.field])
+    }
+  },
+  {
+    immediate: true
   }
-}, {
-  immediate: true
-})
+)
 
 // 跳转逻辑：题目是否需要跳过（隐藏）
 const logicSkip = computed(() => {

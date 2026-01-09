@@ -197,13 +197,13 @@ npm run serve
 
 ### Questionnaire Management End
 
-[http://localhost:8080/management](http://localhost:8080)
+[http://localhost:8088/management](http://localhost:8088)
 
 ### Questionnaire Deployment End
 
 Create and publish a questionnaire.
 
-[http://localhost:8080/render/:surveyPath](http://localhost:8080/render/:surveyPath)
+[http://localhost:8088/render/:surveyPath](http://localhost:8088/render/:surveyPath)
 
 <br /><br />
 

@@ -15,10 +15,7 @@
           </a>
         </el-tooltip>
         <el-tooltip class="item" effect="dark" content="复制链接" placement="top">
-          <a
-            class="cru-suffix j-copy"
-            @click="handleCopy"
-          >
+          <a class="cru-suffix j-copy" @click="handleCopy">
             <i class="font23 iconfont icon-fuzhi"></i>
           </a>
         </el-tooltip>

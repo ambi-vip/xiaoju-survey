@@ -53,8 +53,8 @@ docker-compose -f docker-compose.dev.yml up -d
 
 ### 4. 访问服务
 
-- **Swagger UI**: http://localhost:8080/swagger-ui.html
-- **Actuator**: http://localhost:8080/actuator/health
+- **Swagger UI**: http://localhost:8088/swagger-ui.html
+- **Actuator**: http://localhost:8088/actuator/health
 - **MongoDB**: mongodb://localhost:27017
 - **Redis**: redis://localhost:6379
 - **MinIO Console**: http://localhost:9001
@@ -238,7 +238,7 @@ test: 添加用户认证测试
 ### 应用启动失败
 
 1. 检查 Docker 服务是否运行: `docker ps`
-2. 检查端口占用: `lsof -i :8080`
+2. 检查端口占用: `lsof -i :8088`
 3. 查看日志: `tail -f logs/xiaoju-survey-dev.log`
 
 ### MongoDB 连接失败

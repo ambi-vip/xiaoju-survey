@@ -28,8 +28,8 @@ cd server && ../gradlew run --no-daemon
 
 echo "✅ 开发环境启动完成！"
 echo ""
-echo "📖 Swagger UI: http://localhost:8080/swagger-ui.html"
-echo "📊 Actuator: http://localhost:8080/actuator"
+echo "📖 Swagger UI: http://localhost:8088/swagger-ui.html"
+echo "📊 Actuator: http://localhost:8088/actuator"
 echo "💡 MongoDB: mongodb://localhost:27017"
 echo "🔴 Redis: redis://localhost:6379"
 echo "📁 MinIO: http://localhost:9001"

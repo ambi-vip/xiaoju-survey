@@ -5,7 +5,6 @@ export const useQuestionInfo = (field: string) => {
   const questionData: Record<string, any> = questionstore?.questionData || {}
   const questionTitle = cleanRichText(questionData?.[field]?.title)
   const getOptionTitle = (value: any) => {
-    
     const options = questionData?.[field]?.options || []
     if (value instanceof Array) {
       return options

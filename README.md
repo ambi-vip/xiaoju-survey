@@ -142,9 +142,9 @@ cd web
 npm install
 npm run serve
 
-// B端 http://localhost:8080/management
+// B端 http://localhost:8088/management
 
-// C端 http://localhost:8080/render/:surveyPath
+// C端 http://localhost:8088/render/:surveyPath
 ```
 
 # 快速部署

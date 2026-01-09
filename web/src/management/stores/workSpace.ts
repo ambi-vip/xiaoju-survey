@@ -249,9 +249,8 @@ export const useWorkSpaceStore = defineStore('workSpace', () => {
     }
   }
 
-
-  async function getRecycleBinCount(params?:  any) {
-    const recycleBinMenu = spaceMenus.value.find(menu => menu.id === MenuType.RecycleBin);
+  async function getRecycleBinCount(params?: any) {
+    const recycleBinMenu = spaceMenus.value.find((menu) => menu.id === MenuType.RecycleBin)
 
     try {
       const res: any = await getRecycleBinCountReq(params)

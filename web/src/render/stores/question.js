@@ -38,9 +38,13 @@ const useOptionCountMap = (questionData) => {
       if (countRes.code === 200) {
         setVoteMap(countRes.data)
       }
-      Object.keys(countRes.data).forEach(field => {
+      Object.keys(countRes.data).forEach((field) => {
         Object.keys(countRes.data[field]).forEach((optionHash) => {
-          updateQuotaMapByKey({ questionKey: field, optionKey: optionHash, data: countRes.data[field][optionHash] })
+          updateQuotaMapByKey({
+            questionKey: field,
+            optionKey: optionHash,
+            data: countRes.data[field][optionHash]
+          })
         })
       })
     } catch (error) {
@@ -94,7 +98,7 @@ const useOptionCountMap = (questionData) => {
       updateVoteMapByKey(totalPayload)
     })
   }
-  const updateQuotaMapByKey = ({ questionKey, optionKey, data }) =>{
+  const updateQuotaMapByKey = ({ questionKey, optionKey, data }) => {
     // 兼容为空的情况
     if (!quotaMap.value[questionKey]) {
       quotaMap.value[questionKey] = {}
@@ -107,7 +111,7 @@ const useOptionCountMap = (questionData) => {
     setVoteMap,
     initOptionCountInfo,
     updateVoteData,
-    updateQuotaMapByKey,
+    updateQuotaMapByKey
   }
 }
 
@@ -117,7 +121,7 @@ export const useQuestionStore = defineStore('question', () => {
   const pageIndex = ref(1) // 当前分页的索引
   const changeField = ref(null)
   const changeIndex = computed(() => {
-    if(!changeField.value || !questionData.value) return null
+    if (!changeField.value || !questionData.value) return null
     return questionData.value[changeField.value]?.index
   })
   const needHideFields = ref([])
@@ -191,7 +195,8 @@ export const useQuestionStore = defineStore('question', () => {
   const setQuestionData = (data) => {
     questionData.value = data
   }
-  const { voteMap, quotaMap, setVoteMap, initOptionCountInfo, updateVoteData } = useOptionCountMap(questionData)
+  const { voteMap, quotaMap, setVoteMap, initOptionCountInfo, updateVoteData } =
+    useOptionCountMap(questionData)
 
   const changeSelectMoreData = (data) => {
     const { key, value, field } = data

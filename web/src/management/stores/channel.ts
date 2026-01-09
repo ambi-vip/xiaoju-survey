@@ -10,12 +10,12 @@ import {
   updateChannel as updateChannelReq,
   changeChannelStatus as changeChannelStatusReq,
   deleteChannel as deleteChannelReq,
-  getChannelList as getChannelListReq,
+  getChannelList as getChannelListReq
 } from '@/management/api/channel'
 import { type IDeliverDataItem } from '@/management/enums/channel'
 
-import { useEditStore } from '@/management/stores/edit' 
-import { storeToRefs  } from 'pinia'
+import { useEditStore } from '@/management/stores/edit'
+import { storeToRefs } from 'pinia'
 
 const editStore = useEditStore()
 const { surveyId } = storeToRefs(editStore)
@@ -69,23 +69,22 @@ export const useChannelStore = defineStore('channel', () => {
     }
   }
 
-   const updateChannel = async ({ channelId, name }: any) => {
+  const updateChannel = async ({ channelId, name }: any) => {
     try {
       await updateChannelReq({ channelId, name })
       getChannelList()
     } catch (err) {
       ElMessage.error('删除失败' + err)
     }
-    
   }
-  const changeChannelStatus = async ({channelId, status} : any) => {
+  const changeChannelStatus = async ({ channelId, status }: any) => {
     try {
       await changeChannelStatusReq(channelId, status)
       getChannelList()
     } catch (err) {
       ElMessage.error('删除失败' + err)
     }
-  } 
+  }
   return {
     channelList,
     channelTotal,

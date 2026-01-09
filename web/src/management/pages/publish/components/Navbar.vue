@@ -5,7 +5,7 @@
       <TitlePanel :style="{ marginLeft: '30px' }" :title="title"></TitlePanel>
     </div>
   </div>
-</template>    
+</template>
 <script lang="ts" setup>
 import { defineProps } from 'vue'
 import BackPanel from '../../edit/modules/generalModule/BackPanel.vue'

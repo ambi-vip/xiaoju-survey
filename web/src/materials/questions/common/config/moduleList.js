@@ -11,5 +11,6 @@ export default {
   vote: 'VoteModule',
   'matrix-checkbox': 'GroupModule',
   selectMoreModule: 'SelectMoreModule',
-  cascader:'CascaderModule',
+  cascader: 'CascaderModule',
+  datetime: 'DateTimeModule'
 }

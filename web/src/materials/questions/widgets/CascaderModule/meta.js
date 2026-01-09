@@ -1,6 +1,5 @@
 import basicConfig from '@materials/questions/common/config/basicConfig'
 
-
 const meta = {
   title: '多级联动',
   type: 'cascader',
@@ -40,18 +39,21 @@ const meta = {
       name: 'cascaderData',
       propType: Array,
       description: '这是用于描述选项',
-      defaultValue:
-      {
-        placeholder: [{
-          text: '请选择',
-          hash: '115016'
-        }, {
-          text: '请选择',
-          hash: '115017'
-        }, {
-          text: '请选择',
-          hash: '115018'
-        }],
+      defaultValue: {
+        placeholder: [
+          {
+            text: '请选择',
+            hash: '115016'
+          },
+          {
+            text: '请选择',
+            hash: '115017'
+          },
+          {
+            text: '请选择',
+            hash: '115018'
+          }
+        ],
         children: [
           {
             text: '选项1',
@@ -69,14 +71,10 @@ const meta = {
             hash: '115011'
           }
         ]
-      },
-
-
-    },
+      }
+    }
   ],
-  formConfig: [
-    basicConfig
-  ],
+  formConfig: [basicConfig],
   editConfigure: {
     optionEdit: {
       show: false

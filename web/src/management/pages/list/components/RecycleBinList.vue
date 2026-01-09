@@ -102,7 +102,12 @@ import EmptyIndex from '@/management/components/EmptyIndex.vue'
 import CooperModify from '@/management/components/CooperModify/ModifyDialog.vue'
 import { CODE_MAP } from '@/management/api/base'
 import { QOP_MAP } from '@/management/utils/constant.ts'
-import { deleteSurvey, pausingSurvey, recoverSurvey, completeDeleteSurvey } from '@/management/api/survey'
+import {
+  deleteSurvey,
+  pausingSurvey,
+  recoverSurvey,
+  completeDeleteSurvey
+} from '@/management/api/survey'
 import { useWorkSpaceStore } from '@/management/stores/workSpace'
 import { useSurveyListStore } from '@/management/stores/surveyList'
 import ModifyDialog from './ModifyDialog.vue'
@@ -168,7 +173,7 @@ const currentComponent = computed(() => {
 const fieldList = computed(() => {
   return map(fields, (f) => {
     return get(recycleBinFieldConfig, f, null)
-  }).filter(field => field !== null)
+  }).filter((field) => field !== null)
 })
 const data = computed(() => {
   return props.data
@@ -217,16 +222,18 @@ const onRefresh = async () => {
 
 const getToolConfig = (row) => {
   let funcList = []
-  funcList.push({
-    key: 'recover',
-    label: '恢复'
-  },
-  {
-    key: 'complete_delete',
-    label: '彻底删除',
+  funcList.push(
+    {
+      key: 'recover',
+      label: '恢复'
+    },
+    {
+      key: 'complete_delete',
+      label: '彻底删除',
       width: 70,
       color: 'red'
-  })
+    }
+  )
   const order = ['recover', 'complete_delete']
   const result = funcList.sort((a, b) => order.indexOf(a.key) - order.indexOf(b.key))
 
@@ -371,7 +378,6 @@ const onCloseModify = (type) => {
   }
 }
 const onRowClick = async (row) => {
-
   try {
     await ElMessageBox.alert('该问卷已被删除，无法继续访问。', '提示', {
       confirmButtonText: '返回问卷列表',

@@ -1,33 +1,35 @@
 <template>
   <div :class="['message', message.sender]">
-    <img 
-      :src="message.sender === 'user' ? '/imgs/AI/User_Headshot_Round.webp' : '/imgs/AI/XIAOJU_Headshot_Round.webp'" 
+    <img
+      :src="
+        message.sender === 'user'
+          ? '/imgs/AI/User_Headshot_Round.webp'
+          : '/imgs/AI/XIAOJU_Headshot_Round.webp'
+      "
       class="avatar"
     />
     <div class="bubble">
-      <div 
+      <div
         v-if="message.sender === 'ai' && message.status === 'generating'"
         class="generating-notice"
       >
-        <span style="color: #6E707C;">请稍后，生成问卷努力敲击中....</span>
-        <span 
-          style="color: #FAA600; margin-left: 8px; cursor: pointer;"
+        <span style="color: #6e707c">请稍后，生成问卷努力敲击中....</span>
+        <span
+          style="color: #faa600; margin-left: 8px; cursor: pointer"
           @click="handleStopGenerating"
-        >停止生成</span>
+          >停止生成</span
+        >
       </div>
-      
+
       <!-- 思考内容区域 -->
-      <div 
-        v-if="message.sender === 'ai' && message.reasoningContent" 
-        class="reasoning-content"
-      >
+      <div v-if="message.sender === 'ai' && message.reasoningContent" class="reasoning-content">
         <div class="reasoning-header">
           <span class="reasoning-icon">💭</span>
           <span>思考过程</span>
         </div>
         <div class="reasoning-text">{{ message.reasoningContent }}</div>
       </div>
-      
+
       <template v-if="message.content === 'loading'">
         <span class="dot"></span>
         <span class="dot"></span>
@@ -36,11 +38,13 @@
       <template v-else>
         {{ message.content }}
       </template>
-      <div 
-        v-if="message.sender === 'ai' && 
-              message.content !== 'loading' && 
-              message.status === 'finished' &&
-              message.showReset"  
+      <div
+        v-if="
+          message.sender === 'ai' &&
+          message.content !== 'loading' &&
+          message.status === 'finished' &&
+          message.showReset
+        "
         class="action-buttons"
       >
         <div class="action-item" @click="handleRegenerate">
@@ -103,14 +107,14 @@ const handleDislike = () => {
 .message {
   display: flex;
   margin-bottom: 16px;
-  
+
   .avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     margin: 0 8px;
   }
-  
+
   .bubble {
     padding: 12px 16px;
     border-radius: 12px;
@@ -118,13 +122,13 @@ const handleDislike = () => {
     white-space: pre-wrap;
     position: relative;
   }
-  
+
   .dot {
     display: inline-block;
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: #FAA600;
+    background: #faa600;
     margin: 0 2px;
     animation: dot-bounce 1.4s infinite ease-in-out;
 
@@ -138,7 +142,9 @@ const handleDislike = () => {
   }
 
   @keyframes dot-bounce {
-    0%, 80%, 100% { 
+    0%,
+    80%,
+    100% {
       transform: translateY(0);
       opacity: 0.5;
     }
@@ -151,10 +157,10 @@ const handleDislike = () => {
   &.user {
     flex-direction: row-reverse;
     .bubble {
-      background: #FEF6E6;
-      border: 1px solid #FEF6E6;
+      background: #fef6e6;
+      border: 1px solid #fef6e6;
       margin-left: auto;
-      
+
       &::after {
         content: '';
         position: absolute;
@@ -162,20 +168,20 @@ const handleDislike = () => {
         top: 16px;
         width: 0;
         height: 0;
-        border-left: 8px solid #FEF6E6;
+        border-left: 8px solid #fef6e6;
         border-top: 6px solid transparent;
         border-bottom: 6px solid transparent;
       }
     }
   }
-  
+
   &.ai .bubble {
-    background: #F2F4F7;
-    border: 1px solid #F2F4F7;
+    background: #f2f4f7;
+    border: 1px solid #f2f4f7;
     margin-right: auto;
     position: relative;
     min-width: 288px;
-    
+
     &::after {
       content: '';
       position: absolute;
@@ -183,18 +189,18 @@ const handleDislike = () => {
       top: 16px;
       width: 0;
       height: 0;
-      border-right: 8px solid #F2F4F7;
+      border-right: 8px solid #f2f4f7;
       border-top: 6px solid transparent;
       border-bottom: 6px solid transparent;
     }
-    
+
     .reasoning-content {
       margin-bottom: 12px;
       padding: 12px;
       background: rgba(250, 166, 0, 0.1);
       border-radius: 8px;
-      border-left: 3px solid #FAA600;
-      
+      border-left: 3px solid #faa600;
+
       .reasoning-header {
         display: flex;
         align-items: center;
@@ -202,23 +208,23 @@ const handleDislike = () => {
         font-family: PingFangSC;
         font-size: 12px;
         font-weight: 500;
-        color: #FAA600;
-        
+        color: #faa600;
+
         .reasoning-icon {
           font-size: 14px;
           margin-right: 4px;
         }
       }
-      
+
       .reasoning-text {
         font-family: PingFangSC;
         font-size: 13px;
         line-height: 1.5;
-        color: #4A4C5B;
+        color: #4a4c5b;
         white-space: pre-wrap;
       }
     }
-    
+
     .action-buttons {
       position: absolute;
       right: 16px;
@@ -226,7 +232,7 @@ const handleDislike = () => {
       display: flex;
       gap: 16px;
       align-items: center;
-      
+
       .action-item {
         display: flex;
         align-items: center;
@@ -237,17 +243,17 @@ const handleDislike = () => {
         font-weight: normal;
         line-height: 18px;
         letter-spacing: normal;
-        color: #FAA600;
+        color: #faa600;
 
         .icon-zan,
         .icon-cai {
-          color: #C8C9CD;
-        }   
-        
+          color: #c8c9cd;
+        }
+
         .iconfont {
           font-size: 16px;
         }
-        
+
         &:hover {
           opacity: 0.8;
         }

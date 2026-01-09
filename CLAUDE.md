@@ -230,8 +230,8 @@ AImodel_MODEL=
 ```
 
 **访问地址**:
-- B端管理页: http://localhost:8080/management
-- C端填写页: http://localhost:8080/render/:surveyPath
+- B端管理页: http://localhost:8088/management
+- C端填写页: http://localhost:8088/render/:surveyPath
 
 ### 生产环境配置
 

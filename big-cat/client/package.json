@@ -40,7 +40,7 @@
     "clean": "pnpm clean:dist && pnpm clean:generated",
     "clean:dist": "rm -rf dist",
     "clean:generated": "rm -rf src/generated",
-    "generate": "fetcher-generator generate -i http://localhost:8080/v3/api-docs -o src/generated",
+    "generate": "fetcher-generator generate -i http://localhost:8088/v3/api-docs -o src/generated",
     "prepublishOnly": "pnpm clean:dist && pnpm generate && pnpm build ",
     "release": "pnpm publish --access public --no-git-checks",
     "release:patch": "pnpm version patch && pnpm publish --access public --no-git-checks",

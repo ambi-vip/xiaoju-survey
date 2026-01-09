@@ -1,17 +1,40 @@
 <template>
   <div>
     <span class="primary-color" @click="openCascaderConfig"> 选项编辑 > </span>
-    <el-dialog title="多级联动编辑" class="cascader-config-wrapper" v-model="configVisible" :append-to-body="true"
-      width="706px">
+    <el-dialog
+      title="多级联动编辑"
+      class="cascader-config-wrapper"
+      v-model="configVisible"
+      :append-to-body="true"
+      width="706px"
+    >
       <div class="placeholder-wrapper">
-        <div class="placeholder-wrapper-item" v-for="(item, i) in cascaderData.placeholder" :key="item.hash">
+        <div
+          class="placeholder-wrapper-item"
+          v-for="(item, i) in cascaderData.placeholder"
+          :key="item.hash"
+        >
           <div class="placeholder-wrapper-list">
-            <div class="placeholder-disable-edit cascader-input" @click="showPlaceholderEdit(item.hash)"
-              v-if="editMap[item.hash]">{{ item.text }}</div>
-            <el-input placeholder="请输入内容" :id="`input-${item.hash}`" @blur="editMap[item.hash] = true"
-              v-model="item.text" v-else class="cascader-input" />
+            <div
+              class="placeholder-disable-edit cascader-input"
+              @click="showPlaceholderEdit(item.hash)"
+              v-if="editMap[item.hash]"
+            >
+              {{ item.text }}
+            </div>
+            <el-input
+              placeholder="请输入内容"
+              :id="`input-${item.hash}`"
+              @blur="editMap[item.hash] = true"
+              v-model="item.text"
+              v-else
+              class="cascader-input"
+            />
           </div>
-          <i-ep-ArrowRight v-if="cascaderData.placeholder.length - 1 > i" style="font-size: 16px;margin:0px 4px;" />
+          <i-ep-ArrowRight
+            v-if="cascaderData.placeholder.length - 1 > i"
+            style="font-size: 16px; margin: 0px 4px"
+          />
         </div>
       </div>
       <div class="options-wrapper">
@@ -19,16 +42,21 @@
           <template v-if="key == 0">
             <draggable :list="cascaderData?.children" itemKey="hash">
               <template #item="{ element, index }">
-                <div :class="`option-wrapper-item ${element.hash == cascaderVal[key]?.hash ? 'input-active' : ''}`"
-                  :key="element.hash" @click="setCascaderVal(element, key)">
+                <div
+                  :class="`option-wrapper-item ${element.hash == cascaderVal[key]?.hash ? 'input-active' : ''}`"
+                  :key="element.hash"
+                  @click="setCascaderVal(element, key)"
+                >
                   <el-input v-model="element.text" class="cascader-input">
                     <template #suffix>
-                      <i-ep-RemoveFilled v-if="element.hash == cascaderVal[key]?.hash" class="remove-icon"
-                        @click.stop="removeCascaderNode(cascaderData, index,key)" />
+                      <i-ep-RemoveFilled
+                        v-if="element.hash == cascaderVal[key]?.hash"
+                        class="remove-icon"
+                        @click.stop="removeCascaderNode(cascaderData, index, key)"
+                      />
                     </template>
                   </el-input>
                 </div>
-
               </template>
             </draggable>
           </template>
@@ -36,12 +64,18 @@
             <div v-if="cascaderVal[key - 1]">
               <draggable :list="cascaderVal[key - 1].children" itemKey="hash">
                 <template #item="{ element, index }">
-                  <div :class="`option-wrapper-item ${element.hash == cascaderVal[key]?.hash ? 'input-active' : ''}`"
-                    :key="element.hash" @click="setCascaderVal(element, key)">
+                  <div
+                    :class="`option-wrapper-item ${element.hash == cascaderVal[key]?.hash ? 'input-active' : ''}`"
+                    :key="element.hash"
+                    @click="setCascaderVal(element, key)"
+                  >
                     <el-input v-model="element.text" class="cascader-input">
                       <template #suffix>
-                        <i-ep-RemoveFilled v-if="element.hash == cascaderVal[key]?.hash" class="remove-icon"
-                          @click.stop="removeCascaderNode(cascaderVal[key - 1], index,key)" />
+                        <i-ep-RemoveFilled
+                          v-if="element.hash == cascaderVal[key]?.hash"
+                          class="remove-icon"
+                          @click.stop="removeCascaderNode(cascaderVal[key - 1], index, key)"
+                        />
                       </template>
                     </el-input>
                   </div>
@@ -54,7 +88,11 @@
 
       <div class="add-node-wrapper">
         <template v-for="(item, key) in cascaderVal" :key="key">
-          <div v-if="key == 0 || (cascaderVal[key - 1])" @click="addCascaderNode(key)" class="add-node-item">
+          <div
+            v-if="key == 0 || cascaderVal[key - 1]"
+            @click="addCascaderNode(key)"
+            class="add-node-item"
+          >
             <i-ep-Plus />
             添加选项
           </div>
@@ -78,16 +116,23 @@ import draggable from 'vuedraggable'
 const emit = defineEmits(['handleChange'])
 
 const editStore = useEditStore()
-const { loadInitData, cascaderVal, cascaderData, addCascaderNode, setCascaderVal, removeCascaderNode } = useCascaderPull()
+const {
+  loadInitData,
+  cascaderVal,
+  cascaderData,
+  addCascaderNode,
+  setCascaderVal,
+  removeCascaderNode
+} = useCascaderPull()
 const configVisible = ref(false)
 const editMap = ref({})
 const openCascaderConfig = () => {
-  init();
+  init()
   configVisible.value = true
 }
 
 const showPlaceholderEdit = (hash) => {
-  editMap.value[hash] = false;
+  editMap.value[hash] = false
   nextTick(() => {
     document.getElementById(`input-${hash}`)?.focus()
   })
@@ -95,8 +140,8 @@ const showPlaceholderEdit = (hash) => {
 
 const init = () => {
   loadInitData(editStore.moduleConfig.cascaderData)
-  editMap.value = [];
-  cascaderData.value.placeholder.map(v => {
+  editMap.value = []
+  cascaderData.value.placeholder.map((v) => {
     editMap.value[v.hash] = true
   })
 }
@@ -105,8 +150,6 @@ const cascaderConfigChange = () => {
   emit('handleChange', { key: 'cascaderData', value: cascaderData.value })
   configVisible.value = false
 }
-
-
 </script>
 <style lang="scss" scoped>
 .cascader-config-wrapper {
@@ -128,7 +171,7 @@ const cascaderConfigChange = () => {
     display: flex;
     padding: 1px 11px;
     align-items: center;
-    background: #F6F7F9;
+    background: #f6f7f9;
     border-radius: 4px;
     cursor: pointer;
   }
@@ -179,13 +222,12 @@ const cascaderConfigChange = () => {
 
   .remove-icon {
     cursor: pointer;
-    color: red
+    color: red;
   }
 
   .add-node-wrapper {
     margin-top: 16px;
   }
-
 }
 
 :deep(.el-input__inner) {
