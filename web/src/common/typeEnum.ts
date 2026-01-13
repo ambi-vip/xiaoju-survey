@@ -11,7 +11,8 @@ export enum QUESTION_TYPE {
   RADIO_NPS = 'radio-nps',
   VOTE = 'vote',
   CASCADER = 'cascader',
-  MATRIX_CHOICE = 'matrix-choice'
+  MATRIX_CHOICE = 'matrix-choice',
+  RANKING = 'ranking'
 }
 
 // 题目类型标签映射对象
@@ -27,7 +28,8 @@ export const typeTagLabels: Record<QUESTION_TYPE, string> = {
   [QUESTION_TYPE.RADIO_NPS]: 'NPS评分',
   [QUESTION_TYPE.VOTE]: '投票',
   [QUESTION_TYPE.CASCADER]: '多级联动',
-  [QUESTION_TYPE.MATRIX_CHOICE]: '矩阵选择'
+  [QUESTION_TYPE.MATRIX_CHOICE]: '矩阵选择',
+  [QUESTION_TYPE.RANKING]: '排序题'
 }
 
 // 输入类题型
@@ -41,7 +43,8 @@ export const CHOICES = [
   QUESTION_TYPE.RADIO,
   QUESTION_TYPE.CHECKBOX,
   QUESTION_TYPE.BINARY_CHOICE,
-  QUESTION_TYPE.VOTE
+  QUESTION_TYPE.VOTE,
+  QUESTION_TYPE.RANKING
 ]
 
 // 评分题题型分类

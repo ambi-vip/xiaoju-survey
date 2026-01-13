@@ -91,7 +91,7 @@ export function generateValidArr(
         validator(rule, value, callback) {
           let errors = []
           let tip = ''
-          if (value === '' || value?.replace(/\s*/, '') === '') {
+          if (value === '' || (typeof value === 'string' && value?.replace(/\s*/, '') === '')) {
             tip = '此项未填，请填写完整'
           }
           if (tip) {

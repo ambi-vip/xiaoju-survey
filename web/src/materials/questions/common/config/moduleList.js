@@ -15,6 +15,7 @@ export default {
   selectMoreModule: 'SelectMoreModule',
   cascader: 'CascaderModule',
   datetime: 'DateTimeModule',
-  'matrix-choice': 'MatrixChoiceModule'
+  'matrix-choice': 'MatrixChoiceModule',
+  ranking: 'RankingModule'
 }
 

@@ -76,6 +76,13 @@ export const menuItems = {
     icon: 'tixing-toupiao',
     title: '投票'
   },
+  ranking: {
+    type: 'ranking',
+    path: 'RankingModule',
+    snapshot: '/imgs/question-type-snapshot/TgeRDfURJZ1657702220602.webp',
+    icon: 'tixing-danxuan',
+    title: '排序题'
+  },
   cascader: {
     type: 'cascader',
     path: 'CascaderModule',
@@ -99,7 +106,7 @@ const menuGroup = [
   },
   {
     title: '选择类题型',
-    questionList: ['radio', 'checkbox', 'binary-choice', 'select', 'radio-star', 'radio-nps', 'vote']
+    questionList: ['radio', 'checkbox', 'binary-choice', 'select', 'ranking', 'radio-star', 'radio-nps', 'vote']
   },
   {
     title: '高级题型',
