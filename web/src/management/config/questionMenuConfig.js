@@ -41,6 +41,13 @@ export const menuItems = {
     icon: 'tixing-panduanti',
     title: '判断题'
   },
+  select: {
+    type: 'select',
+    snapshot: '/imgs/question-type-snapshot/TgeRDfURJZ1657702220602.webp',
+    path: 'SelectModule',
+    icon: 'tixing-danxuan',
+    title: '下拉选择'
+  },
   'radio-star': {
     type: 'radio-star',
     snapshot: '/imgs/question-type-snapshot/7CU6tn4XqT1657702221208.webp',
@@ -78,7 +85,7 @@ const menuGroup = [
   },
   {
     title: '选择类题型',
-    questionList: ['radio', 'checkbox', 'binary-choice', 'radio-star', 'radio-nps', 'vote']
+    questionList: ['radio', 'checkbox', 'binary-choice', 'select', 'radio-star', 'radio-nps', 'vote']
   },
   {
     title: '高级题型',

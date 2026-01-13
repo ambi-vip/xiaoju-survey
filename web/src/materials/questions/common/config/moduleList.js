@@ -5,6 +5,7 @@ export default {
   radio: 'RadioModule',
   checkbox: 'CheckboxModule',
   'binary-choice': 'BinaryChoiceModule',
+  select: 'SelectModule',
   'radio-star': 'StarModule',
   'radio-nps': 'NpsModule',
   city: 'CityModule',
