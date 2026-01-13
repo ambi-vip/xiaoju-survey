@@ -199,7 +199,62 @@ export default {
 - `InputNumber` - 数字输入
 - 更多可在 `web/src/management/pages/edit/setters/` 中查找
 
-### 第五步: 注册题型组件映射
+### 第五步: 维护题型枚举和分类
+
+**位置**: `web/src/common/typeEnum.ts`
+
+**操作**: 添加题型到 QUESTION_TYPE 枚举和 typeTagLabels 映射
+
+```typescript
+// 1. 在 QUESTION_TYPE 枚举中添加新题型
+export enum QUESTION_TYPE {
+  TEXT = 'text',
+  TEXTAREA = 'textarea',
+  // ... 现有题型
+  BINARY_CHOICE = 'binary-choice',  // 新增题型常量(使用 SCREAMING_SNAKE_CASE)
+}
+
+// 2. 在 typeTagLabels 中添加题型的中文名称映射
+export const typeTagLabels: Record<QUESTION_TYPE, string> = {
+  [QUESTION_TYPE.TEXT]: '单行输入框',
+  [QUESTION_TYPE.TEXTAREA]: '多行输入框',
+  // ... 现有映射
+  [QUESTION_TYPE.BINARY_CHOICE]: '判断题',  // 新增题型的中文显示名称
+}
+
+// 3. 根据题型特性,将其添加到相应的分类数组中
+// 输入类题型
+export const INPUT = [QUESTION_TYPE.TEXT, QUESTION_TYPE.TEXTAREA]
+
+// 选择类题型
+export const CHOICES = [
+  QUESTION_TYPE.RADIO,
+  QUESTION_TYPE.CHECKBOX,
+  QUESTION_TYPE.BINARY_CHOICE,  // 判断题属于选择类,添加到这里
+  QUESTION_TYPE.VOTE
+]
+
+// 评分题型
+export const RATES = [QUESTION_TYPE.RADIO_STAR, QUESTION_TYPE.RADIO_NPS]
+
+// 高级题型
+export const ADVANCED = [QUESTION_TYPE.CASCADER]
+```
+
+**题型分类说明**:
+- `INPUT` - 输入类题型(单行输入、多行输入等)
+- `NORMAL_CHOICES` - 普通选择类题型(单选、多选)
+- `CHOICES` - 所有选择类题型(包括判断题、投票等)
+- `RATES` - 评分类题型(星级评分、NPS评分等)
+- `ADVANCED` - 高级题型(级联选择等复杂题型)
+
+**注意事项**:
+- 枚举值必须与 meta.js 中的 `type` 字段保持一致
+- 枚举常量名使用 SCREAMING_SNAKE_CASE 命名规范
+- 中文名称应简洁明了,与题型功能相符
+- 根据题型特性选择合适的分类数组,一个题型可能属于多个分类
+
+### 第六步: 注册题型组件映射
 
 **位置**: `web/src/materials/questions/common/config/moduleList.js`
 
@@ -212,7 +267,7 @@ export default {
 };
 ```
 
-### 第六步: 配置题型分组菜单
+### 第七步: 配置题型分组菜单
 
 **位置**: `web/src/management/config/questionMenuConfig.js`
 
@@ -241,7 +296,7 @@ export default [
 ];
 ```
 
-### 第七步: 测试验证
+### 第八步: 测试验证
 
 **B端测试** (编辑器):
 - [ ] 在题型选择面板中能看到新题型

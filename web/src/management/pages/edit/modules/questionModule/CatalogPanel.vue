@@ -18,7 +18,7 @@ const tabSelected = ref<string>('0')
 </script>
 <style lang="scss" scoped>
 .tab-box {
-  width: 360px;
+  width: 280px;
   height: 100%;
   box-shadow: none;
   border: none;
