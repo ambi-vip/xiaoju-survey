@@ -2,6 +2,7 @@
 export default {
   text: 'InputModule',
   textarea: 'TextareaModule',
+  'number-input': 'NumberInputModule',
   radio: 'RadioModule',
   checkbox: 'CheckboxModule',
   'binary-choice': 'BinaryChoiceModule',

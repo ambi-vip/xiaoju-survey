@@ -13,6 +13,13 @@ export const menuItems = {
     icon: 'tixing-duohangshuru',
     title: '多行输入框'
   },
+  'number-input': {
+    type: 'number-input',
+    snapshot: '/imgs/question-type-snapshot/iL84te6xxU1657702189333.webp',
+    path: 'NumberInputModule',
+    icon: 'tixing-danhangshuru',
+    title: '数字'
+  },
   datetime: {
     type: 'datetime',
     snapshot: '/imgs/question-type-snapshot/iL84te6xxU1657702189333.webp',
@@ -88,7 +95,7 @@ export const menuItems = {
 const menuGroup = [
   {
     title: '输入类题型',
-    questionList: ['text', 'textarea', 'datetime']
+    questionList: ['text', 'textarea', 'number-input', 'datetime']
   },
   {
     title: '选择类题型',

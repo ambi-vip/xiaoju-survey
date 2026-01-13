@@ -2,6 +2,7 @@
 export enum QUESTION_TYPE {
   TEXT = 'text',
   TEXTAREA = 'textarea',
+  NUMBER_INPUT = 'number-input',
   SELECT = 'select',
   RADIO = 'radio',
   CHECKBOX = 'checkbox',
@@ -17,6 +18,7 @@ export enum QUESTION_TYPE {
 export const typeTagLabels: Record<QUESTION_TYPE, string> = {
   [QUESTION_TYPE.TEXT]: '单行输入框',
   [QUESTION_TYPE.TEXTAREA]: '多行输入框',
+  [QUESTION_TYPE.NUMBER_INPUT]: '数字',
   [QUESTION_TYPE.SELECT]: '下拉选择',
   [QUESTION_TYPE.RADIO]: '单选',
   [QUESTION_TYPE.CHECKBOX]: '多选',
@@ -29,7 +31,7 @@ export const typeTagLabels: Record<QUESTION_TYPE, string> = {
 }
 
 // 输入类题型
-export const INPUT = [QUESTION_TYPE.TEXT, QUESTION_TYPE.TEXTAREA]
+export const INPUT = [QUESTION_TYPE.TEXT, QUESTION_TYPE.TEXTAREA, QUESTION_TYPE.NUMBER_INPUT]
 
 // 选择类题型分类
 export const NORMAL_CHOICES = [QUESTION_TYPE.RADIO, QUESTION_TYPE.CHECKBOX]
