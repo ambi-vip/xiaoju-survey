@@ -75,6 +75,13 @@ export const menuItems = {
     snapshot: '/imgs/question-type-snapshot/cascader.webp',
     icon: 'cascader-select',
     title: '多级联动'
+  },
+  'matrix-choice': {
+    type: 'matrix-choice',
+    path: 'MatrixChoiceModule',
+    snapshot: '/imgs/question-type-snapshot/matrix-choice.webp',
+    icon: 'tixing-juzhen',
+    title: '矩阵选择'
   }
 }
 
@@ -89,7 +96,7 @@ const menuGroup = [
   },
   {
     title: '高级题型',
-    questionList: ['cascader']
+    questionList: ['cascader', 'matrix-choice']
   }
 ]
 

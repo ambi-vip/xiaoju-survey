@@ -13,5 +13,7 @@ export default {
   'matrix-checkbox': 'GroupModule',
   selectMoreModule: 'SelectMoreModule',
   cascader: 'CascaderModule',
-  datetime: 'DateTimeModule'
+  datetime: 'DateTimeModule',
+  'matrix-choice': 'MatrixChoiceModule'
 }
+
