@@ -1,0 +1,63 @@
+.matrix-nps-wrapper {
+    width: 100%;
+
+    .matrix-nps-table {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #eee;
+        border-radius: 4px;
+
+        .matrix-nps-row {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            .matrix-nps-row-title {
+                width: 200px;
+                margin-right: 20px;
+                font-weight: 500;
+                color: #333;
+                flex-shrink: 0;
+            }
+
+            .matrix-nps-cell {
+                flex: 1;
+                display: flex;
+                justify-content: flex-start;
+
+                // BaseRate styles adjustment for matrix context if needed
+                .rate-box {
+                    justify-content: flex-start;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .matrix-nps-wrapper {
+        .matrix-nps-table {
+            .matrix-nps-row {
+                flex-direction: column;
+                align-items: flex-start;
+
+                .matrix-nps-row-title {
+                    width: 100%;
+                    margin-bottom: 10px;
+                    margin-right: 0;
+                }
+
+                .matrix-nps-cell {
+                    width: 100%;
+                    overflow-x: auto;
+                    padding-bottom: 5px;
+                }
+            }
+        }
+    }
+}

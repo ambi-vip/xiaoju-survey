@@ -1,11 +1,15 @@
 @import '../../common/css/default.scss';
 
 .rate-wrapper-main {
+  width: 100%;
+
   .rate-box {
     display: flex;
     justify-content: space-between;
     margin-bottom: 0.2rem;
+    width: 100%;
   }
+
   .rate-item {
     display: inline-block;
     font-size: 0.42rem;
@@ -15,21 +19,38 @@
     position: relative;
 
     &.number {
-      color: #fff;
       height: 0.62rem;
       font-size: 0.28rem;
       line-height: 0.62rem;
+
       &.on {
         background-color: $primary-color;
+        color: #fff;
       }
+
       &.half {
         background: linear-gradient(90deg, $primary-color 50%, #e3e4e8 50%);
+        color: #fff;
       }
+
       &.off {
         background-color: #e3e4e8;
+        color: #4a4a4a;
       }
+
       &:not(:last-child) {
         margin-right: 0.08rem;
+      }
+    }
+
+    // 图标类型的选中/未选中颜色
+    &:not(.number) {
+      &.on {
+        color: $primary-color;
+      }
+
+      &.off {
+        color: #e3e4e8;
       }
     }
 
@@ -51,6 +72,7 @@
     // 星星半选
     &.qicon-xingxing.half {
       color: #e3e4e8;
+
       &::after {
         content: '';
         position: absolute;
@@ -59,10 +81,8 @@
         width: 50%;
         height: 100%;
         background-color: $primary-color;
-        mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 311.1l54.5 110.4 121.8 17.7-88.2 86 20.8 121.4L512 574.9l-108.9 57.2 20.8-121.4-88.2-86 121.8-17.7z"/></svg>')
-          center/contain no-repeat;
-        -webkit-mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 311.1l54.5 110.4 121.8 17.7-88.2 86 20.8 121.4L512 574.9l-108.9 57.2 20.8-121.4-88.2-86 121.8-17.7z"/></svg>')
-          center/contain no-repeat;
+        mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 311.1l54.5 110.4 121.8 17.7-88.2 86 20.8 121.4L512 574.9l-108.9 57.2 20.8-121.4-88.2-86 121.8-17.7z"/></svg>') center/contain no-repeat;
+        -webkit-mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 311.1l54.5 110.4 121.8 17.7-88.2 86 20.8 121.4L512 574.9l-108.9 57.2 20.8-121.4-88.2-86 121.8-17.7z"/></svg>') center/contain no-repeat;
         opacity: 1;
       }
     }
@@ -70,6 +90,7 @@
     // 爱心半选
     &.qicon-aixin.half {
       color: #e3e4e8;
+
       &::after {
         content: '';
         position: absolute;
@@ -78,10 +99,8 @@
         width: 50%;
         height: 100%;
         background-color: $primary-color;
-        mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M725.3 192c-89.6 0-168.5 47.5-213.3 119.5C467.2 239.5 388.3 192 298.7 192 157.9 192 44 305.9 44 446.7c0 163.7 147.4 308.6 352.7 508.3l17.3 16.7 17.3-16.7C536.6 755.3 684 610.4 684 446.7c0-76.6-30.8-146.1-80.8-196.9C554.1 200.7 642.2 192 725.3 192z"/></svg>')
-          center/contain no-repeat;
-        -webkit-mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M725.3 192c-89.6 0-168.5 47.5-213.3 119.5C467.2 239.5 388.3 192 298.7 192 157.9 192 44 305.9 44 446.7c0 163.7 147.4 308.6 352.7 508.3l17.3 16.7 17.3-16.7C536.6 755.3 684 610.4 684 446.7c0-76.6-30.8-146.1-80.8-196.9C554.1 200.7 642.2 192 725.3 192z"/></svg>')
-          center/contain no-repeat;
+        mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M725.3 192c-89.6 0-168.5 47.5-213.3 119.5C467.2 239.5 388.3 192 298.7 192 157.9 192 44 305.9 44 446.7c0 163.7 147.4 308.6 352.7 508.3l17.3 16.7 17.3-16.7C536.6 755.3 684 610.4 684 446.7c0-76.6-30.8-146.1-80.8-196.9C554.1 200.7 642.2 192 725.3 192z"/></svg>') center/contain no-repeat;
+        -webkit-mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M725.3 192c-89.6 0-168.5 47.5-213.3 119.5C467.2 239.5 388.3 192 298.7 192 157.9 192 44 305.9 44 446.7c0 163.7 147.4 308.6 352.7 508.3l17.3 16.7 17.3-16.7C536.6 755.3 684 610.4 684 446.7c0-76.6-30.8-146.1-80.8-196.9C554.1 200.7 642.2 192 725.3 192z"/></svg>') center/contain no-repeat;
         opacity: 1;
       }
     }

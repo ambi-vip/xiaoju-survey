@@ -1,0 +1,92 @@
+.image-upload-wrapper {
+    width: 100%;
+
+    .upload-box {
+        width: 120px;
+        height: 120px;
+        border: 1px dashed #dcdfe6;
+        border-radius: 4px;
+        background-color: #fafafa;
+        cursor: pointer;
+        transition: all .3s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+
+        &:hover:not(.readonly):not(.has-image) {
+            border-color: #409eff;
+            color: #409eff;
+        }
+
+        &.readonly {
+            cursor: default;
+            background-color: #f5f7fa;
+        }
+
+        .upload-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #606266;
+            text-align: center;
+            padding: 10px;
+
+            .qicon {
+                font-size: 24px;
+                margin-bottom: 8px;
+            }
+
+            span {
+                font-size: 12px;
+                line-height: 1.2;
+            }
+
+            .limit-tip {
+                color: #909399;
+                transform: scale(0.9);
+                margin-top: 2px;
+            }
+        }
+
+        .image-preview {
+            width: 100%;
+            height: 100%;
+            position: relative;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .re-upload-mask {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                opacity: 0;
+                transition: opacity .3s;
+
+                .qicon {
+                    color: #fff;
+                    font-size: 24px;
+                }
+            }
+
+            &:hover .re-upload-mask {
+                opacity: 1;
+            }
+        }
+
+        .hidden-input {
+            display: none;
+        }
+    }
+}

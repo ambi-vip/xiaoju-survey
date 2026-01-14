@@ -11,7 +11,9 @@ export enum QUESTION_TYPE {
   RADIO_NPS = 'radio-nps',
   VOTE = 'vote',
   CASCADER = 'cascader',
+
   MATRIX_CHOICE = 'matrix-choice',
+  MATRIX_SCALE = 'matrix-scale',
   RANKING = 'ranking'
 }
 
@@ -29,6 +31,7 @@ export const typeTagLabels: Record<QUESTION_TYPE, string> = {
   [QUESTION_TYPE.VOTE]: '投票',
   [QUESTION_TYPE.CASCADER]: '多级联动',
   [QUESTION_TYPE.MATRIX_CHOICE]: '矩阵选择',
+  [QUESTION_TYPE.MATRIX_SCALE]: '矩阵评分',
   [QUESTION_TYPE.RANKING]: '排序题'
 }
 
@@ -51,5 +54,5 @@ export const CHOICES = [
 export const RATES = [QUESTION_TYPE.RADIO_STAR, QUESTION_TYPE.RADIO_NPS]
 
 // 高级题型分类
-export const ADVANCED = [QUESTION_TYPE.CASCADER, QUESTION_TYPE.MATRIX_CHOICE]
+export const ADVANCED = [QUESTION_TYPE.CASCADER, QUESTION_TYPE.MATRIX_CHOICE, QUESTION_TYPE.MATRIX_SCALE]
 

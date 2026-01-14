@@ -1,0 +1,42 @@
+.matrix-scale-wrapper {
+  width: 100%;
+
+  .matrix-scale-table {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    .matrix-scale-row {
+      display: table-row;
+      line-height: normal;
+
+      &:hover {
+        background-color: #f7f7f7;
+      }
+    }
+
+    .matrix-scale-row-title {
+      display: table-cell;
+      vertical-align: middle;
+      padding: 10px;
+      font-size: 14px;
+      color: #333;
+      border-bottom: 1px solid #eee;
+      width: 40%;
+    }
+
+    .matrix-scale-cell {
+      display: table-cell;
+      vertical-align: middle;
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+
+      // Ensure the rate component aligns nicely
+      .rate-wrapper {
+        display: inline-flex;
+        align-items: center;
+      }
+    }
+  }
+}

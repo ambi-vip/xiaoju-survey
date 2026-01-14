@@ -96,6 +96,48 @@ export const menuItems = {
     snapshot: '/imgs/question-type-snapshot/matrix-choice.webp',
     icon: 'tixing-juzhen',
     title: '矩阵选择'
+  },
+  'matrix-scale': {
+    type: 'matrix-scale',
+    path: 'MatrixScaleModule',
+    // snapshot: '/imgs/question-type-snapshot/matrix-scale.webp', // TODO: Add snapshot
+    icon: 'tixing-pingfen',
+    title: '矩阵评分'
+  },
+  'matrix-nps': {
+    type: 'matrix-nps',
+    path: 'MatrixNpsModule',
+    // snapshot: '/imgs/question-type-snapshot/matrix-nps.webp',
+    icon: 'tixing-pingfen',
+    title: '矩阵NPS'
+  },
+  'matrix-input': {
+    type: 'matrix-input',
+    path: 'MatrixInputModule',
+    // snapshot: '/imgs/question-type-snapshot/matrix-input.webp',
+    icon: 'tixing-juzhen',
+    title: '矩阵填空'
+  },
+  'matrix-textarea': {
+    type: 'matrix-textarea',
+    path: 'MatrixTextareaModule',
+    // snapshot: '/imgs/question-type-snapshot/matrix-textarea.webp',
+    icon: 'tixing-juzhen',
+    title: '矩阵多行'
+  },
+  'file-upload': {
+    type: 'file-upload',
+    path: 'FileUploadModule',
+    // snapshot: '/imgs/question-type-snapshot/file-upload.webp',
+    icon: 'tixing-danhangshuru',
+    title: '文件上传'
+  },
+  'image-upload': {
+    type: 'image-upload',
+    path: 'ImageUploadModule',
+    // snapshot: '/imgs/question-type-snapshot/image-upload.webp',
+    icon: 'tixing-danhangshuru',
+    title: '图片上传'
   }
 }
 
@@ -109,8 +151,12 @@ const menuGroup = [
     questionList: ['radio', 'checkbox', 'binary-choice', 'select', 'ranking', 'radio-star', 'radio-nps', 'vote']
   },
   {
+    title: '矩阵类题型',
+    questionList: ['matrix-choice', 'matrix-scale', 'matrix-nps', 'matrix-input', 'matrix-textarea']
+  },
+  {
     title: '高级题型',
-    questionList: ['cascader', 'matrix-choice']
+    questionList: ['cascader', 'image-upload', 'file-upload']
   }
 ]
 

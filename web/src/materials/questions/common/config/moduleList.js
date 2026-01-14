@@ -16,6 +16,11 @@ export default {
   cascader: 'CascaderModule',
   datetime: 'DateTimeModule',
   'matrix-choice': 'MatrixChoiceModule',
-  ranking: 'RankingModule'
+  'matrix-scale': 'MatrixScaleModule',
+  ranking: 'RankingModule',
+  'matrix-nps': 'MatrixNpsModule',
+  'matrix-input': 'MatrixInputModule',
+  'matrix-textarea': 'MatrixTextareaModule',
+  'file-upload': 'FileUploadModule',
+  'image-upload': 'ImageUploadModule'
 }
-

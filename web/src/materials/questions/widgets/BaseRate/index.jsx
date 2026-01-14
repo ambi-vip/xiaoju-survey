@@ -63,18 +63,21 @@ export default defineComponent({
     }
     const getRatingClass = (num) => {
       const { value, allowHalf } = props
+      // 将空字符串、null、undefined 视为未选中
+      const numValue = value === '' || value === null || value === undefined ? 0 : Number(value)
+
       if (allowHalf) {
         // 半选模式：判断是否全选、半选或未选
-        if (value >= num) {
+        if (numValue >= num) {
           return 'on'
-        } else if (value >= num - 0.5) {
+        } else if (numValue >= num - 0.5) {
           return 'half'
         } else {
           return 'off'
         }
       } else {
         // 整选模式
-        return value >= num ? 'on' : 'off'
+        return numValue >= num ? 'on' : 'off'
       }
     }
     return {
